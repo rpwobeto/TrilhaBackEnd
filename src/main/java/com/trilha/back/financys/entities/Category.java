@@ -1,9 +1,12 @@
-package com.trilha.back.financys;
+package com.trilha.back.financys.entities;
 
 public class Category {
     private long id;
     private String name;
     private String description;
+
+    public Category(long indexOf) {
+    }
 
     public long getId() {
         return id;

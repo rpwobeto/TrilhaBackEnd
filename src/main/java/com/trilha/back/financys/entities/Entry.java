@@ -1,4 +1,4 @@
-package com.trilha.back.financys;
+package com.trilha.back.financys.entities;
 
 public class Entry {
     private long id;
@@ -9,6 +9,10 @@ public class Entry {
     private String amount;
     private String date;
     private boolean paid;
+
+    public Entry(int size) { }
+
+    public Entry() { }
 
     public long getId() {
         return id;
@@ -85,7 +89,6 @@ public class Entry {
         this.paid = paid;
     }
 
-    public Entry() { }
 
     @Override
     public String toString() {
