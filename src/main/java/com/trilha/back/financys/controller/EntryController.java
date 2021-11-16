@@ -22,9 +22,8 @@ public class EntryController {
         if(entryService.validateEntryById(entryRepository, entry)){
             System.out.println( "O Id: " + entry.getId() + " já existe no Banco de Dados");
             return -1L;
-        }
-
-        System.out.println( "Uma nova categoria foi criada. ID: " + entry.getId());
+        }else
+            System.out.println( "Uma nova Entrada foi criada. ID: " + entry.getName());
         return entryRepository.save(entry).getId();
     }
 
@@ -63,7 +62,8 @@ public class EntryController {
     }
 
     @DeleteMapping("/entry/{id}")
-    public void delete(Long id){
+    public void delete(@PathVariable Long id){
+
         entryRepository.deleteById(id);
     }
 
