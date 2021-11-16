@@ -3,6 +3,7 @@ package com.trilha.back.financys.controller;
 
 import com.trilha.back.financys.entities.Category;
 import com.trilha.back.financys.repository.CategoryRepository;
+import com.trilha.back.financys.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,14 @@ public class CategoryController {
     @PostMapping("/category")
     public Long create(@RequestBody Category category){
 
+        CategoryService categoryService = new CategoryService();
+
+        if(categoryService.validateCategoryById(categoryRepository, category)){
+            System.out.println( "O Id: " + category.getId() + " já existe no Banco de Dados");
+            return -1L;
+        } else
+
+        System.out.println( "Uma nova categoria foi criada. ID: " + category.getId());
         return categoryRepository.save(category).getId();
 
     }

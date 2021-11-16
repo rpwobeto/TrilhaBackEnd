@@ -3,6 +3,7 @@ package com.trilha.back.financys.controller;
 
 import com.trilha.back.financys.entities.Entry;
 import com.trilha.back.financys.repository.EntryRepository;
+import com.trilha.back.financys.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +17,14 @@ public class EntryController {
 
     @PostMapping("/entry")
     public Long create(@RequestBody Entry entry){
+        EntryService entryService = new EntryService();
 
-        System.out.println("A categoria foi encontrada");
-        for (Entry value:
-                entryRepository.findAll()) {
-            if(value.getId() == entry.getId()){
-                System.out.println( "Id: " +entry.getId() + " já pertence ao Banco de Dados");
-                return -1L;
-            }
+        if(entryService.validateEntryById(entryRepository, entry)){
+            System.out.println( "O Id: " + entry.getId() + " já existe no Banco de Dados");
+            return -1L;
         }
+
+        System.out.println( "Uma nova categoria foi criada. ID: " + entry.getId());
         return entryRepository.save(entry).getId();
     }
 
