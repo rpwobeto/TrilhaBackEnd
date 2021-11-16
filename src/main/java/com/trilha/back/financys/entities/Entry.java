@@ -1,18 +1,38 @@
 package com.trilha.back.financys.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Entry {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long categoryId;
     private String name;
     private String description;
     private String type;
     private String amount;
     private String date;
     private boolean paid;
+    private long categoryId;
 
-    public Entry(int size) { }
+    public Entry(){}
 
-    public Entry() { }
+    public Entry(long id, String name, String description, String type,
+                 String amount, String date, boolean paid, long categoryId){
+
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.amount = amount;
+        this.date = date;
+        this.paid = paid;
+        this.categoryId = categoryId;
+    }
 
     public long getId() {
         return id;
@@ -20,14 +40,6 @@ public class Entry {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -74,34 +86,29 @@ public class Entry {
         return paid;
     }
 
-    public void setPaid(boolean paid) {
+    public void isPaid(boolean paid) {
         this.paid = paid;
     }
 
-    public Entry(long id, long categoryId, String name, String description, String type, String amount, String date, boolean paid) {
-        this.id = id;
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.amount = amount;
-        this.date = date;
-        this.paid = paid;
     }
-
 
     @Override
     public String toString() {
         return "Entry{" +
                 "id=" + id +
-                ", categoryId=" + categoryId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
                 ", amount='" + amount + '\'' +
                 ", date='" + date + '\'' +
                 ", paid=" + paid +
+                ", categoryId='" + categoryId + '\'' +
                 '}';
     }
-
 }

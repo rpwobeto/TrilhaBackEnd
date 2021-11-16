@@ -1,42 +1,70 @@
 package com.trilha.back.financys.controller;
 
+
 import com.trilha.back.financys.entities.Entry;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.http.HttpStatus;
+import com.trilha.back.financys.repository.EntryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @RestController
-@RequestMapping("/entry")
-@Api(value = "Desafio 3")
-@CrossOrigin(origins = "*")
-
 public class EntryController {
 
-    private final List<Entry> list = new ArrayList<Entry>();
+    @Autowired
+    private EntryRepository entryRepository;
 
-    @PostMapping(" ")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "Create Entry")
+    @PostMapping("/entry")
+    public Long create(@RequestBody Entry entry){
 
-    public int create(@RequestBody Entry entry){
-        list.add(entry);
-        return list.indexOf(entry);
+        System.out.println("A categoria foi encontrada");
+        for (Entry value:
+                entryRepository.findAll()) {
+            if(value.getId() == entry.getId()){
+                System.out.println( "Id: " +entry.getId() + " já pertence ao Banco de Dados");
+                return -1L;
+            }
+        }
+        return entryRepository.save(entry).getId();
     }
 
-    @GetMapping(" ")
-    @ResponseStatus(HttpStatus.FOUND)
-    @ApiOperation(value = "Order Date List Entry")
-    public List<Entry> read (){
+    @GetMapping("/entry")
+    public List<Entry> read(){
 
-        sortDates(list);
-        return list;
+        entryRepository.findAll().sort(Comparator.comparing(Entry::getDate));
+        return entryRepository.findAll();
+
     }
 
-    private static void sortDates(List<Entry> list) {
-        list.sort(Comparator.comparing(Entry::getDate));
+    @GetMapping("/entry/{id}")
+    public Optional<Entry> findEntryById(Long id){
+        entryRepository.findAll().sort(Comparator.comparing(Entry::getDate));
+        return entryRepository.findById(id);
     }
+
+    @PutMapping("/entry/{id}")
+    public ResponseEntity<Entry>
+    update(@RequestBody Entry entry,
+           @PathVariable("id") Long id) throws IllegalStateException{
+        Entry entry1 = entryRepository.findById(id).orElseThrow(()
+                -> new IllegalStateException(
+                "A Entry com id: " + id + " não foi encontrada"
+        ));
+        entry1.setId(entry.getId());
+        entry1.setName(entry.getName());
+        entry1.setDescription(entry.getDescription());
+        entry1.setAmount(entry.getAmount());
+        entry1.setType(entry.getType());
+        entry1.setDate(entry.getDate());
+        entry1.isPaid(entry.getPaid());
+        entry1.setCategoryId(entry.getCategoryId());
+        entryRepository.save(entry1);
+        return ResponseEntity.ok().body(entry1);
+    }
+
+    @DeleteMapping("/entry/{id}")
+    public void delete(Long id){
+        entryRepository.deleteById(id);
+    }
+
 }
