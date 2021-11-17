@@ -8,6 +8,7 @@ R: O sistema de controle de versionamento é realizado por sistemas que permitem
 
 b) Cite 5 vantagens em utilizar um VCS:
 
+
 R: 1) Acompanhar as diversas mudanças do código ao longo do tempo de desenvolvimento do projeto; 2) Identificar a pessoa/funcionário que realizou a atualização; 3) Identificar quando a pessoa/funcionário realizou a atualização; 4) Identificar o que e por que foi modificado o código do projeto; 5) Disponibilização das versões do código para situações que necessitem: update, deletes, rollbacks ou inserts.
 
 c) Cite 3 exemplos de VCS:
