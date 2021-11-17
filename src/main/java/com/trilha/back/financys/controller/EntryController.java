@@ -62,9 +62,11 @@ public class EntryController {
     }
 
     @DeleteMapping("/entry/{id}")
-    public void delete(@PathVariable Long id){
+    public ResponseEntity<Object> delete(@PathVariable Long id){
 
         entryRepository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
