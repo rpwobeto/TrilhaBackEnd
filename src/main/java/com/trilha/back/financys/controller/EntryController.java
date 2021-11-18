@@ -1,10 +1,13 @@
 package com.trilha.back.financys.controller;
 
 
+import com.trilha.back.financys.entities.Category;
 import com.trilha.back.financys.entities.Entry;
+import com.trilha.back.financys.repository.CategoryRepository;
 import com.trilha.back.financys.repository.EntryRepository;
 import com.trilha.back.financys.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
@@ -14,6 +17,7 @@ public class EntryController {
 
     @Autowired
     private EntryRepository entryRepository;
+    private CategoryRepository categoryRepository;
 
     @PostMapping("/entry")
     public Long create(@RequestBody Entry entry){
@@ -41,25 +45,13 @@ public class EntryController {
         return entryRepository.findById(id);
     }
 
-    @PutMapping("/entry/{id}")
-    public ResponseEntity<Entry>
-    update(@RequestBody Entry entry,
-           @PathVariable("id") Long id) throws IllegalStateException{
-        Entry entry1 = entryRepository.findById(id).orElseThrow(()
-                -> new IllegalStateException(
-                "A Entry com id: " + id + " não foi encontrada"
-        ));
-        entry1.setId(entry.getId());
-        entry1.setName(entry.getName());
-        entry1.setDescription(entry.getDescription());
-        entry1.setAmount(entry.getAmount());
-        entry1.setType(entry.getType());
-        entry1.setDate(entry.getDate());
-        entry1.isPaid(entry.getPaid());
-        entry1.setCategoryId(entry.getCategoryId());
-        entryRepository.save(entry1);
-        return ResponseEntity.ok().body(entry1);
+    @PutMapping(value = "/entry/{id}")
+    public ResponseEntity<Entry> update(@PathVariable(name = "id") Long id, @RequestBody Entry entry){
+        entry.setId(id);
+        entryRepository.save(entry);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
+
 
     @DeleteMapping("/entry/{id}")
     public ResponseEntity<Object> delete(@PathVariable Long id){

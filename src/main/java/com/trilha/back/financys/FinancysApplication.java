@@ -1,7 +1,6 @@
 package com.trilha.back.financys;
 
-import com.trilha.back.financys.entities.Category;
-import com.trilha.back.financys.entities.Entry;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

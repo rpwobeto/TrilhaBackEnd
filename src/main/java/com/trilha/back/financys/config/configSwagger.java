@@ -30,7 +30,7 @@ public class configSwagger {
     private ApiInfo metaInfo() {
 
         ApiInfo apiInfo = new ApiInfo(
-                "Desafio 3",
+                "Trilhas de Desafios",
                 "Testes com Swagger2",
                 "1.0",
                 "Terms of Service",

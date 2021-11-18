@@ -1,16 +1,15 @@
 package com.trilha.back.financys.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity()
+@Entity
+@Table(name = "tb_entry")
 public class Entry {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column (nullable = false, unique = true)
     private String name;
     private String description;
     private String type;
@@ -19,6 +18,15 @@ public class Entry {
     private boolean paid;
     private long categoryId;
 
+    @ManyToOne
+    @JoinColumn(name = "category")
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    @Deprecated
     public Entry(){}
 
     public Entry(long id, String name, String description, String type,
