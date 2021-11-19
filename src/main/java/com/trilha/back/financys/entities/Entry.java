@@ -1,7 +1,10 @@
 package com.trilha.back.financys.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "tb_entry")
 public class Entry {
@@ -9,17 +12,20 @@ public class Entry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column (nullable = false, unique = true)
+    @Column (nullable = false)
     private String name;
     private String description;
     private String type;
     private String amount;
     private String date;
     private boolean paid;
-    private long categoryId;
 
-    @ManyToOne
-    @JoinColumn(name = "category")
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category", referencedColumnName = "id")
     private Category category;
 
     public Category getCategory() {
@@ -30,7 +36,7 @@ public class Entry {
     public Entry(){}
 
     public Entry(long id, String name, String description, String type,
-                 String amount, String date, boolean paid, long categoryId){
+                 String amount, String date, boolean paid, Category categoryId){
 
         this.id = id;
         this.name = name;
@@ -39,15 +45,11 @@ public class Entry {
         this.amount = amount;
         this.date = date;
         this.paid = paid;
-        this.categoryId = categoryId;
+        this.category = categoryId;
     }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -98,25 +100,4 @@ public class Entry {
         this.paid = paid;
     }
 
-    public long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    @Override
-    public String toString() {
-        return "Entry{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", type='" + type + '\'' +
-                ", amount='" + amount + '\'' +
-                ", date='" + date + '\'' +
-                ", paid=" + paid +
-                ", categoryId='" + categoryId + '\'' +
-                '}';
-    }
 }

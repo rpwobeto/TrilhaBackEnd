@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
 public class CategoryController {
 
@@ -51,7 +50,6 @@ public class CategoryController {
 
     @PutMapping(value = "/category/{id}")
     public ResponseEntity<Category> update(@PathVariable(name = "id") Long id, @RequestBody Category category){
-        category.setId(id);
         categoryRepository.save(category);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

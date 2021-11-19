@@ -17,25 +17,23 @@ public class EntryController {
 
     @Autowired
     private EntryRepository entryRepository;
+    @Autowired
     private CategoryRepository categoryRepository;
 
-    @PostMapping("/entry")
-    public Long create(@RequestBody Entry entry){
-        EntryService entryService = new EntryService();
+    @Autowired
+    private EntryService entryService;
 
-        if(entryService.validateEntryById(entryRepository, entry)){
-            System.out.println( "O Id: " + entry.getId() + " já existe no Banco de Dados");
-            return -1L;
-        }else
-            System.out.println( "Uma nova Entrada foi criada. ID: " + entry.getName());
-        return entryRepository.save(entry).getId();
+    @PostMapping("/entry")
+    public Entry create(@RequestBody Entry entry){
+
+        return entryRepository.save(entry);
     }
 
     @GetMapping("/entry")
     public List<Entry> read(){
 
-        entryRepository.findAll().sort(Comparator.comparing(Entry::getDate));
         return entryRepository.findAll();
+
 
     }
 
@@ -47,7 +45,6 @@ public class EntryController {
 
     @PutMapping(value = "/entry/{id}")
     public ResponseEntity<Entry> update(@PathVariable(name = "id") Long id, @RequestBody Entry entry){
-        entry.setId(id);
         entryRepository.save(entry);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

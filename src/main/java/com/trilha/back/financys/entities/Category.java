@@ -1,8 +1,11 @@
 package com.trilha.back.financys.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "tb_category")
 public class Category {
@@ -11,11 +14,11 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column (nullable = false, unique = true)
+    @Column (nullable = false)
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Entry> entry;
 
     @Deprecated
@@ -28,10 +31,6 @@ public class Category {
         this.description = description;
     }
 
-
-    public void setId(long id){
-        this.id = id;
-    }
 
     public long getId(){
         return this.id;
@@ -53,12 +52,4 @@ public class Category {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }
