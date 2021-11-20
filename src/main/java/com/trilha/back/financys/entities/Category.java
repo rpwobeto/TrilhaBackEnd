@@ -1,55 +1,33 @@
 package com.trilha.back.financys.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "tb_category")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column (nullable = false)
+    private Long id;
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "category", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Entry> entry;
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore
+    private Set<Entry> entry;
 
-    @Deprecated
-    public Category(){}
-
-    public Category(int id, String name, String description){
-
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-
-    public long getId(){
-        return this.id;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getName(){
-        return this.name;
-    }
-
-    public String getDescription(){
-        return this.description;
-    }
-
-    public void setDescription(String description){
-        this.description = description;
+    public Category(int indexOf) {
     }
 
 }

@@ -41,4 +41,5 @@ public class configSwagger {
 
         return apiInfo;
     }
+
 }

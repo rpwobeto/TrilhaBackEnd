@@ -5,13 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CategoryDTO {
+public class EntryDTO {
 
-    private String name;
+    private String categoryName;
     private String description;
+    private String type;
+    private String amount;
+
 }

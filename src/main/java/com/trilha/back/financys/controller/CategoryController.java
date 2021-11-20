@@ -1,65 +1,57 @@
 package com.trilha.back.financys.controller;
 
-
 import com.trilha.back.financys.entities.Category;
 import com.trilha.back.financys.repository.CategoryRepository;
 import com.trilha.back.financys.service.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
+@RequiredArgsConstructor
 @RestController
+@RequestMapping("/financys")
 public class CategoryController {
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryRepository repository;
 
+    @Autowired
+    private CategoryService categoryService;
 
     @PostMapping("/category")
-    public Long create(@RequestBody Category category){
-
-        CategoryService categoryService = new CategoryService();
-
-        if(categoryService.validateCategoryById(categoryRepository, category)){
-            System.out.println( "O Id: " + category.getId() + " já existe no Banco de Dados");
-            return -1L;
-        } else
-
-        System.out.println( "Uma nova categoria foi criada. ID: " + category.getId());
-        return categoryRepository.save(category).getId();
-
+    public ResponseEntity<Category> create(@RequestBody Category category){
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(category));
     }
 
     @GetMapping("/category")
-    public List<Category> read(){
-
-        return categoryRepository.findAll();
-
+    public ResponseEntity<List<Category>> readAll(){
+        List<Category> readAll = repository.findAll();
+        return ResponseEntity.ok(readAll);
     }
 
     @GetMapping("/category/{id}")
-    public Optional<Category> findCategoryById(Long id){
-
-        System.out.println("A categoria foi encontrada");
-        return categoryRepository.findById(id);
-
+    public ResponseEntity<Category> read(@PathVariable Long id){
+        Category read = repository.findById(id).get();
+        return ResponseEntity.ok(read);
     }
 
+
     @PutMapping(value = "/category/{id}")
-    public ResponseEntity<Category> update(@PathVariable(name = "id") Long id, @RequestBody Category category){
-        categoryRepository.save(category);
+    public ResponseEntity<Category>
+    update(@PathVariable(name = "id") Long id, @RequestBody Category category){
+        category.setId(id);
+        repository.save(category);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/category/{id}")
-    public ResponseEntity<Object> delete(@PathVariable Long id){
-
-        categoryRepository.deleteById(id);
-
-        return ResponseEntity.noContent().build();
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> deleteCategory(@PathVariable Long id){
+        repository.deleteById(id);
+        return  ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
