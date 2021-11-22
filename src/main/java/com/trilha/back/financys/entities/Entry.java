@@ -25,8 +25,6 @@ public class Entry {
     private String description;
     private String type;
     private String amount;
-
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataEntry;
     private boolean paid;
 

@@ -31,8 +31,7 @@ public class EntryService {
     public Entry create (Entry entry){
         boolean categoryExists = validadeCategoryByIdL(entry.getCategory().getId());
         if(categoryExists == false){
-            System.out.println("================!CATEGORIA NÃO ENCONTRADA!===============");
-
+            System.out.println("A Category não foi encontrada");
         }
         return entryRepository.save(entry);
     }

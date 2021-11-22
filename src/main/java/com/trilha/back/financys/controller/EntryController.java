@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import com.trilha.back.financys.DTO.LancamentosDTO;
+//import com.trilha.back.financys.DTO.EntryDTO;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -28,14 +28,14 @@ public class EntryController {
     private CategoryService categoryService;
 
     @PostMapping("/entry")
-    public ResponseEntity<?> create (@RequestBody Entry entry) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(entryService.create(entry));
+    public ResponseEntity<Entry> create (@RequestBody Entry entry) {
+        return new ResponseEntity<Entry>(entryService.create(entry),HttpStatus.CREATED);
     }
 
     @GetMapping("/entry")
     public ResponseEntity<List<Entry>>
     findAll (@RequestParam (value = "paid", required = false)Boolean paid){
-        List<Entry> entry = new ArrayList<>();
+        List<Entry> entry;
         if (Objects.isNull(paid)){
             entry = entryRepository.findAll();
         }else{
@@ -52,9 +52,8 @@ public class EntryController {
     }
 
     @GetMapping(value = "/entry/category/{categoryName}")
-    public ResponseEntity<?> findByName (@PathVariable String categoryName){
-        Long category = categoryService.idCategoryByName(categoryName);
-        return ResponseEntity.ok(category);
+    public ResponseEntity<Long> findByName (@PathVariable String categoryName){
+        return new ResponseEntity<Long>(categoryService.idCategoryByName(categoryName), HttpStatus.OK);
     }
 
     @GetMapping("/entry/category")

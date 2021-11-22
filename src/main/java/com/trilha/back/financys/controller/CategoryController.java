@@ -37,8 +37,7 @@ public class CategoryController {
         Category read = repository.findById(id).get();
         return ResponseEntity.ok(read);
     }
-
-
+    
     @PutMapping(value = "/category/{id}")
     public ResponseEntity<Category>
     update(@PathVariable(name = "id") Long id, @RequestBody Category category){
