@@ -23,7 +23,7 @@ public class CategoryController {
     @GetMapping("/readAllCategory")
     @ApiOperation(value="Retorna toda a lista da Category")
     public List<Category> read(){
-        return categoryRepository.findAll();
+        return (List<Category>) categoryRepository.findAll();
     }
 
     @GetMapping("/readCategory/{id}")

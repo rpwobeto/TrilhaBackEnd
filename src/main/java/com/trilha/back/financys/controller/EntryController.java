@@ -22,14 +22,14 @@ public class EntryController {
     @GetMapping("/readAllEntry")
     @ApiOperation(value="Retorna toda a lista da Entry")
     public List<Entry> read(){
-        entryRepository.findAll().sort(Comparator.comparing(Entry::getDate));
-        return entryRepository.findAll();
+//        entryRepository.findAll().sort(Comparator.comparing(Entry::getDate));
+        return (List<Entry>) entryRepository.findAll();
     }
 
     @GetMapping("/readEntry/{id}")
     @ApiOperation(value="Retorna um elemento da Entry pelo ID")
     public Optional<Entry> findEntryById(Long id){
-        entryRepository.findAll().sort(Comparator.comparing(Entry::getDate));
+//        entryRepository.findAll().sort(Comparator.comparing(Entry::getDate));
         return entryRepository.findById(id);
     }
 
