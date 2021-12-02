@@ -146,6 +146,43 @@ i. Crie uma classe de serviço para lançamentos;
 ii. Crie um método dentro na nova classe de serviço para validar categoria pelo ID; 
 Ex: public boolean validateCategoryById(long idCategory) {}
 iii. Refatore a controller de lançamentos para utilizar o método validateCategoryById();
-=======
-a) Com base na informação anterior: i. Crie uma classe de serviço para lançamentos; ii. Crie um método dentro na nova classe de serviço para validar categoria pelo ID; Ex: public boolean validateCategoryById(long idCategory) {} iii. Refatore a controller de lançamentos para utilizar o método validateCategoryById();
->>>>>>> desafio_5
+
+a) Com base na informação anterior (Entry):
+i. Crie uma classe de serviço para lançamentos;
+ii. Crie um método dentro na nova classe de serviço para validar categoria
+pelo ID; Ex: public boolean validateCategoryById(long idCategory) {}
+iii. Refatore a controller de lançamentos para utilizar o método
+validateCategoryById();
+b) Com base na informação anterior(Category):
+i. Crie uma classe de serviço para category;
+ii. Crie um método dentro na nova classe de serviço para trazer o id da
+categoria passando o nome da categoria; Ex: public String
+idCategoryByName(name nameCategory) {}
+iii. Refatore a controller de lançamentos para utilizar o método
+idCategoryByName();
+Uma API REST adequada deve ter componentes abaixo em resposta
+1. Código de status
+2. Corpo de resposta
+3. Local para o recurso que foi alterado (por exemplo, se um recurso foi criado, o
+   cliente estaria interessado em saber o URL desse local).
+   O principal objetivo do ResponseEntity é fornecer a opção 3.
+   Video: https://www.youtube.com/watch?v=D1TiEm956WE
+   Dica: Utilize sempre no ResponseEntity o retorno genérico (Object) para poder
+   retornar erros ou outras saídas personalizadas.
+   c) Com base na informação anterior (Entry):
+   i. Adicione a anotação “@RestController” na classe da controller;
+   ii. Refatore todas os retornos da controller adicionando o retorno como
+   ResponseEntity;
+   iii. No end-point com o método Post adicione a anotação “@RequestBody”
+   na classe de entrada.
+   d) Com base na informação anterior(Category):
+   i. Adicione a anotação “@RestController” na classe da controller;
+   ii. Refatore todas os retornos da controller adicionando o retorno como
+   ResponseEntity;
+   iii. No end-point com o método Post adicione a anotação “@RequestBody”
+   na classe de entrada.
+   Apoio: Documentação do
+   Spring(https://docs.spring.io/spring-framework/docs/4.3.3.RELEASE/spring-framework
+   -reference/htmlsingle/#mvc-ann-restcontroller).
+   Versione seu código na brach “desafio5” na branch “main” para atualizar com
+   suas modificações.
