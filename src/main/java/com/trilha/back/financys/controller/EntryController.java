@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import com.trilha.back.financys.DTO.EntryDTO;
 import java.util.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/financys")
+@RequestMapping(value = "/v6/financys/entry")
 public class EntryController {
 
     @Autowired
@@ -27,14 +26,14 @@ public class EntryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/entry")
+    @PostMapping(value = "/create")
     public ResponseEntity<Entry> create (@RequestBody Entry entry) {
         return new ResponseEntity<Entry>(entryService.create(entry),HttpStatus.CREATED);
     }
 
-    @GetMapping("/entry")
+    @GetMapping(value = "/read-all")
     public ResponseEntity<List<Entry>>
-    findAll (@RequestParam (value = "paid", required = false)Boolean paid){
+    findAll (@RequestParam (value = "paid", required = false) Boolean paid){
         List<Entry> entry;
         if (Objects.isNull(paid)){
             entry = entryRepository.findAll();
@@ -44,24 +43,24 @@ public class EntryController {
         return ResponseEntity.ok(entry);
     }
 
-    @GetMapping("/entry/{id}")
+    @GetMapping(value = "/read-by/{id}")
 
     public ResponseEntity<Entry> read(@PathVariable Long id){
         Entry read = entryRepository.findById(id).get();
         return ResponseEntity.ok(read);
     }
 
-    @GetMapping(value = "/entry/category/{categoryName}")
+    @GetMapping(value = "/find-by-name-category-name")
     public ResponseEntity<Long> findByName (@PathVariable String categoryName){
         return new ResponseEntity<Long>(categoryService.idCategoryByName(categoryName), HttpStatus.OK);
     }
 
-    @GetMapping("/entry/category")
+    @GetMapping(value = "/read-dto")
     public List<EntryDTO> readDTO(){
         return entryService.returnListDTO();
     }
 
-    @PutMapping(value = "/entry/{id}")
+    @PutMapping(value = "/update-by/{id}")
     public ResponseEntity<Entry>
     update(@PathVariable(name = "id") Long id, @RequestBody Entry entry){
         entry.setId(id);
@@ -69,7 +68,7 @@ public class EntryController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/entry/{id}")
+    @DeleteMapping("/delete-by/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> deleteEntry(@PathVariable Long id){
         entryRepository.deleteById(id);

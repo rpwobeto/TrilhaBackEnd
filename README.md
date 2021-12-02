@@ -147,5 +147,66 @@ ii. Crie um método dentro na nova classe de serviço para validar categoria pel
 Ex: public boolean validateCategoryById(long idCategory) {}
 iii. Refatore a controller de lançamentos para utilizar o método validateCategoryById();
 =======
-a) Com base na informação anterior: i. Crie uma classe de serviço para lançamentos; ii. Crie um método dentro na nova classe de serviço para validar categoria pelo ID; Ex: public boolean validateCategoryById(long idCategory) {} iii. Refatore a controller de lançamentos para utilizar o método validateCategoryById();
->>>>>>> desafio_5
+a) Com base na informação anterior: 
+i. Crie uma classe de serviço para lançamentos; 
+ii. Crie um método dentro na nova classe de serviço para validar categoria pelo ID; 
+Ex: public boolean validateCategoryById(long idCategory) {} iii. Refatore a controller de lançamentos para utilizar 
+o método validateCategoryById();
+
+b) Com base na informação anterior(Category):
+i. Crie uma classe de serviço para category;
+
+ii. Crie um método dentro na nova classe de serviço para trazer o id da categoria passando o nome da categoria; 
+Ex: public String idCategoryByName(name nameCategory) {}
+
+iii. Refatore a controller de lançamentos para utilizar o método idCategoryByName();
+Uma API REST adequada deve ter componentes abaixo em resposta
+1. Código de status
+2. Corpo de resposta
+3. Local para o recurso que foi alterado (por exemplo, se um recurso foi criado, o cliente estaria interessado em 
+4. saber o URL desse local).
+   O principal objetivo do ResponseEntity é fornecer a opção 3.
+   Video: https://www.youtube.com/watch?v=D1TiEm956WE
+   Dica: Utilize sempre no ResponseEntity o retorno genérico (Object) para poder
+   retornar erros ou outras saídas personalizadas.
+   
+5. c) Com base na informação anterior (Entry):
+   i. Adicione a anotação “@RestController” na classe da controller;
+   ii. Refatore todas os retornos da controller adicionando o retorno como ResponseEntity;
+   iii. No end-point com o método Post adicione a anotação “@RequestBody” na classe de entrada.
+   
+6. d) Com base na informação anterior(Category):
+   i. Adicione a anotação “@RestController” na classe da controller;
+   ii. Refatore todas os retornos da controller adicionando o retorno como
+   ResponseEntity;
+   iii. No end-point com o método Post adicione a anotação “@RequestBody” na classe de entrada.
+   Apoio: Documentação do
+   Spring(https://docs.spring.io/spring-framework/docs/4.3.3.RELEASE/spring-framework
+   -reference/htmlsingle/#mvc-ann-restcontroller).
+
+Versione seu código na brach “desafio5” na branch “main” para atualizar com suas modificações.
+
+## Desafio 6:
+____________________________________________________________
+Prólogo: Seu objetivo durante o desafio 6 é conhecer o funcionamento das classes de DTO e a 
+importância dessa prática que tem como viés de trazer maior segurança para a nossa aplicação.
+a) O que significa DTO, e qual sua importância? (máx 10 linhas)
+R: O DTO (Data Transfer Object) é um padrão de projeto que auxilia o desenvolvedor a manipular as 
+informações da Entidades de forma mais segura, evitando assim que usuários maliciosos acessem dados da 
+nossa model/entity.
+
+Dica: https://marioalvial.medium.com/blindando-sua-api-spring-boot-com-o-padr%C3%A3o-dto-44f97020d1a0
+
+b) Com base no artigo passado, crie suas próprias classes de DTO’s para as entidades de lançamento e de categoria;
+De maneira prática, as responses de uma Web API devem conter apenas as informações necessárias para a aplicação que fez a requisição. Vamos imaginar um cenário onde precisamos montar um gráfico onde vamos ter que somar o valor (amount) de todos lançamentos divididos por suas respectivas categorias. Então nesse panorama as únicas informações que nos importam é o nome da categoria, o tipo do lançamento, e a soma de todos os valores dos lançamentos para a categoria específica.
+Ex: [ { name: 'Salário', type: 'revenue', total: 38566,34 }, { name: 'Aluguel', type: 'expense', total: 38566,34 } ]
+
+c) Com base na informação anterior:
+i. Crie uma classe (objeto) DTO chart;
+ii. Crie um método dentro da classe de serviço de lançamentos e utilize o laço for para realizar o agrupamento por categoria e retornar uma lista de objetos do tipo DTO chart;
+iii. Crie um método dentro da controller de lançamentos para retornar a lista criada no item anterior;
+
+d) Agora vamos imaginar o seguinte cenário public Usuario transformaParaObjeto(){ return new Usuario(nome, email, senha, muitas, outras, variáveis, tornando, cada, vez, mais, trabalhoso, o, mapeamento, dos, dados); }
+Assista o seguinte vídeo: https://www.youtube.com/watch?v=N3uAMuC-bxo
+E em seguida este artigo: https://www.infoq.com/br/articles/dto-hipster-ou-depreciado/
+Com base nos links anteriores, onde é apresentado uma nova forma de serialização dos dados. Implemente uma nova serialização dos dados utilizando Mapper.
