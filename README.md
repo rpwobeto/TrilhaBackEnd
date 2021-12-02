@@ -146,7 +146,7 @@ i. Crie uma classe de serviço para lançamentos;
 ii. Crie um método dentro na nova classe de serviço para validar categoria pelo ID; 
 Ex: public boolean validateCategoryById(long idCategory) {}
 iii. Refatore a controller de lançamentos para utilizar o método validateCategoryById();
-=======
+
 a) Com base na informação anterior: 
 i. Crie uma classe de serviço para lançamentos; 
 ii. Crie um método dentro na nova classe de serviço para validar categoria pelo ID; 
@@ -191,6 +191,7 @@ ____________________________________________________________
 Prólogo: Seu objetivo durante o desafio 6 é conhecer o funcionamento das classes de DTO e a 
 importância dessa prática que tem como viés de trazer maior segurança para a nossa aplicação.
 a) O que significa DTO, e qual sua importância? (máx 10 linhas)
+
 R: O DTO (Data Transfer Object) é um padrão de projeto que auxilia o desenvolvedor a manipular as 
 informações da Entidades de forma mais segura, evitando assim que usuários maliciosos acessem dados da 
 nossa model/entity.
