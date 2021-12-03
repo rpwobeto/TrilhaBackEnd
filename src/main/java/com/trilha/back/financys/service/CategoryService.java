@@ -22,10 +22,6 @@ public class CategoryService {
 
     private ModelMapper modelMapper;
 
-    public CategoryService(CategoryRepository categoryRepository) {
-          this.categoryRepository = categoryRepository;
-      }
-
     public Long idCategoryByName(String nameCategory ) {
         Category read = categoryRepository.findByName(nameCategory);
         return read.getId();
@@ -39,5 +35,9 @@ public class CategoryService {
         return categoryRepository.save(category);
 
     }
+
+//        public CategoryService(CategoryRepository categoryRepository) {
+//          this.categoryRepository = categoryRepository;
+//      }
 
 }

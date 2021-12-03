@@ -3,6 +3,7 @@ package com.trilha.back.financys.controller;
 import com.trilha.back.financys.entities.Category;
 import com.trilha.back.financys.repository.CategoryRepository;
 import com.trilha.back.financys.service.CategoryService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/v6/financys/category")
+@Api(value = "Desafios Trilha BackEnd Java - CATEGORY")
+@CrossOrigin(origins = "*")
+
 public class CategoryController {
 
     @Autowired
@@ -29,14 +33,14 @@ public class CategoryController {
     }
 
     @GetMapping(value = "/read-all")
-    @ApiOperation(value = "Lê todas as categorias criadas")
+    @ApiOperation(value = "Retorna todas as categorias criadas")
     public ResponseEntity<List<Category>> readAll(){
         List<Category> readAll = repository.findAll();
         return ResponseEntity.ok(readAll);
     }
 
     @GetMapping(value = "/read-by/{id}")
-    @ApiOperation(value = "Lê todas as categorias por ID")
+    @ApiOperation(value = "Retorna a categoria pelo ID")
     public ResponseEntity<Category> read(@PathVariable Long id){
         Category read = repository.findById(id).get();
         return ResponseEntity.ok(read);

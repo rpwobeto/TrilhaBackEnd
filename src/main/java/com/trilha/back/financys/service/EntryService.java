@@ -46,12 +46,18 @@ public class EntryService {
         return entry;
     }
 
-    public List<EntryDTO> returnListDTO() {
-        List<Entry> listEntry = entryRepository.findAll();
-        for (Entry entryCategory : listEntry){
-            entryCategory.getCategory();
-        }
-        return listEntry.stream().map(this::mapToDto).collect(Collectors.toList());
+    public List<EntryDTO> returnListDTO(){
+        List<Entry> entryList = entryRepository.findAll();
+        entryRepository.getClass();
+        return entryList.stream().map(this::mapToDto).collect(Collectors.toList());
     }
+//
+//    public List<EntryDTO> returnListDTO() {
+//        List<Entry> listEntry = entryRepository.findAll();
+//        for (Entry entryCategory : listEntry){
+//            entryCategory.getCategory();
+//        }
+//        return listEntry.stream().map(this::mapToDto).collect(Collectors.toList());
+//    }
 
 }
