@@ -211,3 +211,34 @@ d) Agora vamos imaginar o seguinte cenário public Usuario transformaParaObjeto(
 Assista o seguinte vídeo: https://www.youtube.com/watch?v=N3uAMuC-bxo
 E em seguida este artigo: https://www.infoq.com/br/articles/dto-hipster-ou-depreciado/
 Com base nos links anteriores, onde é apresentado uma nova forma de serialização dos dados. Implemente uma nova serialização dos dados utilizando Mapper.
+
+Desafio 7:
+____________________________________________________________
+Prólogo: Seu objetivo durante o desafio 7 é aprender os conceitos de validação, tratamento e manipulação de dados de forma otimizada.
+Crie uma nova branch em seu repositório com o nome “desafio7” a partir da
+“main”, responda as perguntas no documento README.md.
+a) Crie uma validação para a entidade de categoria seguindo os seguintes
+requisitos:
+a. name: não pode ser nulo ou vazio, min = 3 e max = 15
+b. description: não pode ser nulo ou vazio, min = 15 e max = 50
+b) Crie uma validação para a entidade de lançamento seguindo os seguintes
+requisitos:
+a. name: não pode ser nulo ou vazio, min = 3 e max = 45
+b. description: não pode ser nulo ou vazio, min = 15 e max = 150
+c. type: não pode ser nulo ou vazio, min = 3 e max = 10 (nota extra pra
+quem usar enum)
+d. amount: não pode ser nulo ou vazio, < 0;
+e. date: não pode ser nulo ou vazio;
+f. paid: não pode ser nulo ou vazio;
+c) Configure mensagens específicas para cada uma das validações;
+d) Realize novos testes com dados incorretos para tirar a prova real;
+Dica:
+https://marioalvial.medium.com/validando-requisi%C3%A7%C3%B5es-e-tratando-exce
+%C3%A7%C3%B5es-no-spring-boot-1750ddb1e1cc
+e) No desafio anterior, mais especificamente na letra c, é utilizando o comando for
+para criar o agrupamento das informações necessárias para criar o gráfico.
+Existem maneiras mais otimizadas para realizar essas manipulações,
+experimente refatorar o item c, agora utilizando o stream() no lugar do for e if’s.
+Dica: https://medium.com/@racc.costa/streams-no-java-8-e-no-java-9-36177c5c3313
+Versione seu código na brach “desafio7” na branch “main” para atualizar com
+suas modificações.
