@@ -32,7 +32,7 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(category));
     }
 
-    @GetMapping(value = "/read-all")
+    @GetMapping(value = "/read")
     @ApiOperation(value = "Retorna todas as categorias criadas")
     public ResponseEntity<List<Category>> readAll(){
         List<Category> readAll = repository.findAll();

@@ -6,9 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.util.Set;
+import java.io.Serializable;
+
 
 @Entity
 @Table(name = "tb_category")
@@ -16,25 +15,23 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Category {
+public class Category implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-
-    @NotBlank(message = "{name.not.blank}")
-    @Size(min = 3, max = 15, message = "{name.size}")
+    
+    @Column(name = "name" )
     private String name;
 
-    @NotBlank(message = "{description.not.blank}")
-    @Size(min = 15, max = 50, message = "{description.size}")
+    @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "category")
-    @JsonIgnore
-    private Set<Entry> entry;
 
-    public Category(int indexOf) {
-    }
+
+
 
 }
