@@ -1,4 +1,4 @@
-package com.trilha.back.financys.DTO;
+package com.trilha.back.financys.dto;
 
 import lombok.*;
 

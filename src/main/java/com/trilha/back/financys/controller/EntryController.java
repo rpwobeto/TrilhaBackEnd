@@ -1,6 +1,6 @@
 package com.trilha.back.financys.controller;
 
-import com.trilha.back.financys.DTO.EntryDTO;
+import com.trilha.back.financys.dto.EntryDTO;
 import com.trilha.back.financys.entities.Entry;
 import com.trilha.back.financys.repository.EntryRepository;
 import com.trilha.back.financys.service.CategoryService;
@@ -36,8 +36,11 @@ public class EntryController {
     @PostMapping(value = "/create")
     @ApiOperation(value = "Cria uma Entry")
     public ResponseEntity<Entry> create (@RequestBody @Valid Entry entry) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(entryService.create(entry));
+        return ResponseEntity.status(HttpStatus.CREATED).body(Entry.builder().build());//entryDTO.create(entry));
     }
+//    public ResponseEntity<Entry> create (@RequestBody  Entry entry) {
+//        return ResponseEntity.status(HttpStatus.CREATED).build().getBody(entryService.create());   //build() //body(entryService.create());
+//    }
 
     @GetMapping(value = "/read-all")
     @ApiOperation(value = "Retorna todas as entries criadas")

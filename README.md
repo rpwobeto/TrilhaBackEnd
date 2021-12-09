@@ -247,3 +247,62 @@ experimente refatorar o item c, agora utilizando o stream() no lugar do for e if
 Dica: https://medium.com/@racc.costa/streams-no-java-8-e-no-java-9-36177c5c3313
 Versione seu código na brach “desafio7” na branch “main” para atualizar com
 suas modificações.
+
+
+Desafio 8:
+____________________________________________________________
+Prólogo: Seu objetivo durante o desafio 8 é entender como funcionam as exceptions, e
+ser capaz de tratá-las com o intuito de manter um bom funcionamento da sua API e
+prevenir que ela quebre.
+Crie uma nova branch em seu repositório com o nome “desafio8” a partir da
+“main”, responda as perguntas no documento README.md.
+a) O que são exceptions? (máx 5 linhas)
+
+
+b) Qual é o funcionamento do try, catch e finally? (máx 10 linhas)
+
+
+c) Qual a relação entre “try, catch e finally” e “throws”? (máx 5 linhas)
+
+
+
+d) Para que serve a annotation @ExceptionHandler? (máx 5 linhas)
+
+
+
+e) Para que serve o comando throw? (máx 5 linhas)
+
+
+
+f) Para que serve a annotation @ControllerAdvice? (máx 10 linhas)
+
+
+
+g) Crie o seguinte método na classe de serviço do lançamento:
+Integer calculaMedia(Integer x, Integer y) {
+return (x/y);
+}
+i. Dentro da controller de lançamentos crie um endpoint com as seguintes
+características:
+calculaMedia
+Path: /calcula
+Method: GET
+Pathvariable: variáveis x e y
+RequestBody: Tipo Integer
+Response: retorna divisão x/y
+ii. Realize uma chamada passando o valor x=10 e y=5 e verifique o retorno.
+Agora faça outra chamada passando x=10 e y=0;
+iii. O que aconteceu?
+iv. Faça o tratamento dessa exception utilizando try catch e se necessário
+finally;
+v. Agora faça o tratamento utilizando throw e @ExceptionHandler;
+vi. Aproveitando o método criado com @ExceptionHandler crie sua própria
+classe para tratamento de exceptions utilizando @ControllerAdvice;
+vii. Realize novos testes, verifique o resultado final e escreva sua própria
+conclusão sobre exceptions;
+Dica:
+https://www.oracle.com/br/technical-resources/article/java/erros-java-exceptions.htm
+l
+
+Versione seu código na brach “desafio8” na branch “main” para atualizar com
+suas modificações.

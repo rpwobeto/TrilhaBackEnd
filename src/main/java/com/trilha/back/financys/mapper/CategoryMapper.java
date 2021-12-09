@@ -1,6 +1,6 @@
 package com.trilha.back.financys.mapper;
 
-import com.trilha.back.financys.DTO.CategoryDTO;
+import com.trilha.back.financys.dto.CategoryDTO;
 import com.trilha.back.financys.entities.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

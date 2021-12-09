@@ -1,10 +1,9 @@
 package com.trilha.back.financys.service;
 
 
-import com.trilha.back.financys.DTO.EntryDTO;
+import com.trilha.back.financys.dto.EntryDTO;
 import org.springframework.stereotype.Service;
 import springfox.documentation.schema.Entry;
-
 import java.util.List;
 
 @Service

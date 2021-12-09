@@ -1,6 +1,6 @@
 package com.trilha.back.financys.service;
 
-import com.trilha.back.financys.DTO.CategoryDTO;
+import com.trilha.back.financys.dto.CategoryDTO;
 
 
 public interface CategoryService{

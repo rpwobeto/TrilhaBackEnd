@@ -1,6 +1,6 @@
 package com.trilha.back.financys.mapper;
 
-import com.trilha.back.financys.DTO.EntryDTO;
+import com.trilha.back.financys.dto.EntryDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import springfox.documentation.schema.Entry;
@@ -13,7 +13,7 @@ public interface EntryMapper {
     @Mapping(target = "amount", source = "entryDTO.amount")
     @Mapping(target = "date", source = "entryDTO.date")
     @Mapping(target = "paid", source = "entryDTO.paid")
-    Entry mapToEntry(EntryDTO entryDTO);
+    public Entry mapToEntry(EntryDTO entryDTO);
 
 
     @Mapping(target = "name", source = "entry.name")
@@ -22,7 +22,7 @@ public interface EntryMapper {
     @Mapping(target = "amount", source = "entry.amount")
     @Mapping(target = "date", source = "entry.date")
     @Mapping(target = "paid", source = "entry.paid")
-    EntryDTO mapToEntry(Entry entry);
+    public EntryDTO mapToEntry(Entry entry);
 }
 
 
