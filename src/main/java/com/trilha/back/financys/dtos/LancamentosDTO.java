@@ -1,0 +1,27 @@
+package com.trilha.back.financys.dtos;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
+
+import java.time.LocalDate;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class LancamentosDTO {
+
+    private String name;
+
+    private String description;
+
+    private String type;
+
+    private String amount;
+
+    @JsonFormat( shape= JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private LocalDate date;
+
+    private Boolean paid;
+
+}
