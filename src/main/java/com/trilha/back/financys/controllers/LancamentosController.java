@@ -36,7 +36,6 @@ public class LancamentosController {
     @ResponseStatus(HttpStatus.CREATED)
     public LancamentosEntity save (@RequestBody LancamentosEntity lancamentosEntity) {
         return lancamentosService.save(lancamentosEntity);
-        //return ResponseEntity.ok().body(lancamentosService.save(lancamentosDTO)).getBody();
     }
 
     @GetMapping (value= "/get-all")
@@ -67,6 +66,13 @@ public class LancamentosController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping(value = "/calcula/{x}/{y}")
+    @ApiOperation(value = "Calcula a Média de X e Y")
+    public Integer calculaMedia (@PathVariable("x") Integer x,
+                                 @PathVariable("y") Integer y){
+        return lancamentosService.calculaMedia(x, y);
+    }
+}
 //    @PostMapping(value = "/create")
 //    @ApiOperation(value = "Cria uma CategoriaEntity")
 //    public CategoriaEntity save(@RequestBody CategoriaDTO categoriaDTO) {
@@ -110,7 +116,7 @@ public class LancamentosController {
 //        return lancamentosService.calculatesAverage(x, y);
 //    }
 
-}
+
 
 //    @GetMapping(value = "/read-dto")
 //    @ApiOperation(value = "Retorna as Entries do DTO")

@@ -281,7 +281,6 @@ R: o THROWS é uma assinatura contida no método indicando que pode ser lançada
 uma ou várias exceções. Os blocos TRY, CATCH e FINALLY preveem e descrevem as 
 exceções e são responsáveis por executá las.
 
-
 d) Para que serve a annotation @ExceptionHandler? (máx 5 linhas)
 
 R: Essa annotation tem a funcionalidade de trabalhar com as exceções que ocorrem
@@ -289,12 +288,10 @@ em classes e métodos. O método que recebe essa anotação podem ter assinatura
 podem apresentar parâmetros de diferentes tipos, por exemplo: objetos de request e response,
 argumentos de exceções, Session Objects (ex: HTTP Session), dentre outras.
 
-
 e) Para que serve o comando throw? (máx 5 linhas)
 
 R: É utilizada para lançar exceções específicas, personalizadas. Este pode ser utilizado
 para lançar exceções em métodos ou blocos de codificação dentro da classe.
-
 
 f) Para que serve a annotation @ControllerAdvice? (máx 10 linhas)
 

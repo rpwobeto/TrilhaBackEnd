@@ -2,7 +2,7 @@ package com.trilha.back.financys.services;
 
 import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.LancamentosEntity;
-import com.trilha.back.financys.exceptions.InvalidOperation;
+import com.trilha.back.financys.exceptions.DivisaoZeroException;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
 import com.trilha.back.financys.repositories.LancamentosRepository;
 import javassist.NotFoundException;
@@ -79,12 +79,11 @@ public class LancamentosService {
         }
     }
     public Integer calculaMedia (Integer x, Integer y){
-        y = 0;
-        x = 10;
+
         try {
             return (x / y);
         } catch (ArithmeticException e) {
-            throw new InvalidOperation("Nenhum número pode ser dividido por zero");
+            throw new DivisaoZeroException("Nenhum número pode ser dividido por zero. ");
         }
     }
 

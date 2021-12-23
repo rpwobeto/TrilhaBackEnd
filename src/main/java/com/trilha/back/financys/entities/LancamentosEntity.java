@@ -1,6 +1,8 @@
 package com.trilha.back.financys.entities;
 
 import lombok.*;
+import org.modelmapper.ModelMapper;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -56,6 +58,7 @@ public class LancamentosEntity implements Serializable {
     public Object findByCategoryId(Long id){
         return getDate();
     }
+
 
 //    private List<CategoriaEntity> categoryId = new ArrayList<>();
 
