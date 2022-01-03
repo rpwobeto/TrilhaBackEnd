@@ -357,7 +357,7 @@ conceitos gerais para resolver problemas particulares de uma aplicação. Utiliz
 para resolver problemas particulares em nossa aplicação.
 
 b) Cite e explique com suas palavras:
-I. Um dos padrões de criação; 
+I. Um dos padrões de criação:  
 II. Um dos padrões estruturais;
 III. Um dos padrões comportamentais;
 
