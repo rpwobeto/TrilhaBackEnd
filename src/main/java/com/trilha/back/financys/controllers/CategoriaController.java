@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping(value = "/financys/categoria")
 @Api(value = "Desafios Trilha BackEnd Java - CATEGORIA")
 @CrossOrigin(origins = "*")
-
 public class CategoriaController {
     @Autowired
     private CategoriaService categoryService;
@@ -31,12 +30,18 @@ public class CategoriaController {
         return ResponseEntity.ok().body(categoryService.save(categoriaDTO)).getBody();
     }
 
-    @GetMapping (value= "/get-all")
+    @GetMapping(path = "/get-all")
     @ApiOperation(value = "Retorna todas as categorias criadas")
-    @ResponseStatus(HttpStatus.OK)
-    public List<CategoriaEntity> getAll() {
-        return ResponseEntity.ok().body(categoryService.getAll()).getBody();
+    public ResponseEntity<List<CategoriaDTO>> getAll() {
+        return new ResponseEntity<>(categoryService.getAll(), HttpStatus.OK);
     }
+
+//    @GetMapping (value= "/get-all")
+//    @ApiOperation(value = "Retorna todas as categorias criadas")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<CategoriaEntity> getAll(CategoriaDTO dto ) {
+//        return ResponseEntity.ok().body(categoryService.getAll(dto)).getBody();
+//    }
 
     @GetMapping(value = "/getId/{id}")
     @ApiOperation(value = "Retorna a categoria pelo ID")
@@ -46,11 +51,11 @@ public class CategoriaController {
 
     @PutMapping(path = "/update-by/{id}")
     @ApiOperation(value = "Atualiza a categoria criada através do ID")
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public ResponseEntity<CategoriaEntity> update(@PathVariable("id") Long id,
-                                                  @RequestBody CategoriaEntity entity) {
-
-      return  ResponseEntity.ok().body(categoryService.update(id, entity));
+    //@ResponseStatus(value = HttpStatus.ACCEPTED)
+    public ResponseEntity<?> update(@PathVariable("id") Long id,
+                                    @RequestBody CategoriaDTO dto) {
+        categoryService.update(id);
+      return  ResponseEntity.ok().body(categoryService.save(dto));
     }
 
     @DeleteMapping(path = "/delete-by/{id}")

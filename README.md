@@ -362,7 +362,7 @@ II. Um dos padrões estruturais;
 III. Um dos padrões comportamentais;
 
 c) Explique o conceito de arquitetura de software e seu proposito; (máx 5 linhas)
-R:
+R: 
 
 d) Até o atual momento devemos ter criado 12 classes, o seu projeto deve estar bem
 parecido com um dos dois cenários abaixo:
