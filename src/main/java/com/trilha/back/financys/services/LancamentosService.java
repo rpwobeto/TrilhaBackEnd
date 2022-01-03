@@ -1,6 +1,8 @@
 package com.trilha.back.financys.services;
 
+import com.trilha.back.financys.dtos.CategoriaDTO;
 import com.trilha.back.financys.dtos.LancamentosDTO;
+import com.trilha.back.financys.entities.CategoriaEntity;
 import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.DivisaoZeroException;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
@@ -30,9 +32,10 @@ public class LancamentosService {
 //        return lancamentosRepository.save(lancamentos);
 //    }
 
-    public LancamentosEntity save(LancamentosEntity lancamentosDTO) {
-        return lancamentosRepository.save(mapToEntity(lancamentosDTO));
+    public LancamentosEntity save(LancamentosDTO lancamentosDTO) {
+        return lancamentosRepository.save(mapToEntity(LancamentosEntity.builder().build()));
     }
+
 
     public List<LancamentosEntity> getAll() {
         return new ArrayList<>(lancamentosRepository.findAll());
@@ -51,6 +54,7 @@ public class LancamentosService {
         }
         return lancamentosRepository.getById(id);
     }
+
 
     public LancamentosEntity update(Long id, LancamentosDTO lancamentosDTO) throws LancamentosNotFoundException {
         Optional<LancamentosEntity> opt = lancamentosRepository.findById(id);
@@ -79,11 +83,10 @@ public class LancamentosService {
         }
     }
     public Integer calculaMedia (Integer x, Integer y){
-
         try {
             return (x / y);
         } catch (ArithmeticException e) {
-            throw new DivisaoZeroException("Nenhum número pode ser dividido por zero. ");
+            throw new DivisaoZeroException("Nenhum número pode ser dividido por zero.");
         }
     }
 

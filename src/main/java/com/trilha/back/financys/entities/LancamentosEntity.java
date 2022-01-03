@@ -1,5 +1,6 @@
 package com.trilha.back.financys.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
@@ -18,6 +19,10 @@ import java.io.Serializable;
 @ToString
 
 public class LancamentosEntity implements Serializable {
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private CategoriaEntity categoria;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,15 +50,12 @@ public class LancamentosEntity implements Serializable {
 
     @NotBlank(message = "Campo data não pode ser nula ou vazia")
     @NotNull(message = "Campo data não pode ser nula ou vazia")
+    @JsonFormat( shape= JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private String date;
 
     @NotBlank(message = "O campo pago não pode ser nulo ou vazio, aceita apenas sim ou não")
     @NotNull(message = "O campo pago não pode ser nulo ou vazio, aceita apenas sim ou não")
     private boolean paid;
-
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private CategoriaEntity categoria;
 
     public Object findByCategoryId(Long id){
         return getDate();

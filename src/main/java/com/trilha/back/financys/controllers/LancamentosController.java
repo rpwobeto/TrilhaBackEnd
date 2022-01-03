@@ -1,5 +1,6 @@
 package com.trilha.back.financys.controllers;
 
+import com.trilha.back.financys.dtos.CategoriaDTO;
 import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.CategoriaEntity;
 import com.trilha.back.financys.entities.LancamentosEntity;
@@ -34,9 +35,10 @@ public class LancamentosController {
     @PostMapping(value = "/create")
     @ApiOperation(value = "Cria um Lancamento")
     @ResponseStatus(HttpStatus.CREATED)
-    public LancamentosEntity save (@RequestBody LancamentosEntity lancamentosEntity) {
-        return lancamentosService.save(lancamentosEntity);
+    public LancamentosEntity save (@RequestBody LancamentosDTO lancamentosDTO) {
+        return ResponseEntity.ok().body(lancamentosService.save(lancamentosDTO)).getBody();
     }
+
 
     @GetMapping (value= "/get-all")
     @ApiOperation(value = "Retorna todos os lancamentos criados")

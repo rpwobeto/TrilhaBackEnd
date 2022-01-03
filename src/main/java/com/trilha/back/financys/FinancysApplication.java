@@ -12,10 +12,9 @@ import org.springframework.context.annotation.Bean;
 public class FinancysApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(FinancysApplication.class, args);
-
 	}
+
 	@Bean
 	public ModelMapper modelMapper(){
 		return new ModelMapper();

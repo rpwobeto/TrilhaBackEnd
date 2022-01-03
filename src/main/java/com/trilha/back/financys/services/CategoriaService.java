@@ -1,19 +1,14 @@
 package com.trilha.back.financys.services;
 
 import com.trilha.back.financys.dtos.CategoriaDTO;
-import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.CategoriaEntity;
-import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.CategoriaNotFoundException;
 import com.trilha.back.financys.repositories.CategoriaRepository;
 import javassist.NotFoundException;
-import net.bytebuddy.jar.asm.commons.Remapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

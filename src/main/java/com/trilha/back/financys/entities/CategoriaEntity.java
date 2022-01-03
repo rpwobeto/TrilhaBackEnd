@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,26 +26,31 @@ public class CategoriaEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "categoria")
+    @JsonIgnore
+    private List<LancamentosEntity> lancamentos; //= new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    //@NotBlank(message = "Campo nome não pode ser nulo ou vazio")
-    //@NotNull(message = "Campo nome não pode ser nulo ou vazio")
-    //@Size(min = 3, max = 15, message = "min 3 a 15 caracteres")
+    @NotBlank(message = "Campo nome não pode ser nulo ou vazio")
+    @NotNull(message = "Campo nome não pode ser nulo ou vazio")
+    @Size(min = 3, max = 15, message = "min 3 a 15 caracteres")
     @Column(name = "name")
     private String name;
 
-    //@NotBlank(message = "Campo de descrição não pode ser nulo ou vazio")
-    //@NotNull(message = "Campo de descrição não pode ser nulo ou vazio")
-    //@Size(min = 15, max = 50, message = "min 15 a 50 caracteres")
+    @NotBlank(message = "Campo de descrição não pode ser nulo ou vazio")
+    @NotNull(message = "Campo de descrição não pode ser nulo ou vazio")
+    @Size(min = 15, max = 50, message = "min 15 a 50 caracteres")
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "categoria")
-    @JsonIgnore
-    private List<LancamentosEntity> lancamentos;
+
+//    public List<LancamentosEntity> getLancamentos(){
+//        return lancamentos;
+//    }
 
     public CategoriaEntity(int indexOf){ }
 

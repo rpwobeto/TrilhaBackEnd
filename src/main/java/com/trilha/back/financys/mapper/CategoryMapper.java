@@ -4,5 +4,5 @@ import org.modelmapper.ModelMapper;
 
 public interface CategoryMapper {
 
-    ModelMapper mapper = new ModelMapper();
+//    ModelMapper mapper = new ModelMapper();
 }

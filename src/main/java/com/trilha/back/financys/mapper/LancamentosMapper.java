@@ -5,5 +5,5 @@ import org.modelmapper.ModelMapper;
 
 public interface LancamentosMapper {
 
-    ModelMapper mapper = new ModelMapper();
+//    ModelMapper mapper = new ModelMapper();
 }
