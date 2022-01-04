@@ -1,5 +1,6 @@
 package com.trilha.back.financys.controllers;
 
+import com.trilha.back.financys.dtos.CategoriaDTO;
 import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.CategoriaEntity;
 import com.trilha.back.financys.entities.LancamentosEntity;
@@ -34,15 +35,20 @@ public class LancamentosController {
     @PostMapping(value = "/create")
     @ApiOperation(value = "Cria um Lancamento")
     @ResponseStatus(HttpStatus.CREATED)
-    public LancamentosEntity save (@RequestBody LancamentosEntity lancamentosEntity) {
-        return lancamentosService.save(lancamentosEntity);
+    public LancamentosEntity save (@RequestBody LancamentosDTO lancamentosDTO) {
+        return ResponseEntity.ok().body(lancamentosService.save(lancamentosDTO)).getBody();
     }
+//
+//    @PostMapping(value = "/create")
+//    @ApiOperation(value = "Cria uma CategoriaEntity")
+//    public CategoriaEntity save(@RequestBody CategoriaDTO categoriaDTO) {
+//        return ResponseEntity.ok().body(categoryService.save(categoriaDTO)).getBody();
+//    }
 
     @GetMapping (value= "/get-all")
     @ApiOperation(value = "Retorna todos os lancamentos criados")
-    @ResponseStatus(HttpStatus.OK)
-    public List<LancamentosEntity> getAll() {
-        return ResponseEntity.ok().body(lancamentosService.getAll()).getBody();
+    public ResponseEntity<List<LancamentosDTO>> getAll() {
+        return new ResponseEntity<>(lancamentosService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/get-id/{id}")
@@ -53,11 +59,19 @@ public class LancamentosController {
 
     @PutMapping(path = "/update-by/{id}")
     @ApiOperation(value = "Atualiza o lançamento criado através do ID")
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public LancamentosEntity  update(@PathVariable("id") Long id, @RequestBody LancamentosDTO lancamentosDTO) {
-
-      return  ResponseEntity.ok().body(lancamentosService.update(id,lancamentosDTO)).getBody();
+    //@ResponseStatus(value = HttpStatus.ACCEPTED)
+    public ResponseEntity<?> update(@PathVariable("id") Long id,
+                                    @RequestBody LancamentosDTO lancamentosDTO) {
+        lancamentosService.update(id);
+        return  ResponseEntity.ok().body(lancamentosService.save(lancamentosDTO));
     }
+//    @PutMapping(path = "/update-by/{id}")
+//    @ApiOperation(value = "Atualiza o lançamento criado através do ID")
+//    @ResponseStatus(value = HttpStatus.ACCEPTED)
+//    public LancamentosEntity  update(@PathVariable("id") Long id, @RequestBody LancamentosDTO lancamentosDTO) {
+//
+//      return  ResponseEntity.ok().body(lancamentosService.update(id,lancamentosDTO)).getBody();
+//    }
 
     @DeleteMapping(path = "/delete-by/{id}")
     @ApiOperation(value = "Deleta o lancamento criado através do ID")

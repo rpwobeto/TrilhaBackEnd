@@ -1,7 +1,10 @@
 package com.trilha.back.financys.services;
 
+import com.trilha.back.financys.dtos.CategoriaDTO;
 import com.trilha.back.financys.dtos.LancamentosDTO;
+import com.trilha.back.financys.entities.CategoriaEntity;
 import com.trilha.back.financys.entities.LancamentosEntity;
+import com.trilha.back.financys.exceptions.CategoriaNotFoundException;
 import com.trilha.back.financys.exceptions.DivisaoZeroException;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
 import com.trilha.back.financys.repositories.LancamentosRepository;
@@ -11,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -21,21 +25,15 @@ public class LancamentosService {
 
     @Autowired
     private ModelMapper modelMapper;
-//    @Autowired
-//    private CategoriaRepository categoriaRepository;
 
-//    private List<LancamentosDTO> lancamentosDTO = new ArrayList<>();
-
-//    public LancamentosEntity save (LancamentosEntity lancamentos){
-//        return lancamentosRepository.save(lancamentos);
-//    }
-
-    public LancamentosEntity save(LancamentosEntity lancamentosDTO) {
-        return lancamentosRepository.save(mapToEntity(lancamentosDTO));
+    public LancamentosEntity save(LancamentosDTO lancamentosDTO) {
+        return lancamentosRepository.save(mapToLancamentos(lancamentosDTO));
     }
 
-    public List<LancamentosEntity> getAll() {
-        return new ArrayList<>(lancamentosRepository.findAll());
+    public List<LancamentosDTO> getAll() {
+        return lancamentosRepository.findAll()
+                .stream()
+                .map(this::mapToDTO).collect(Collectors.toList());
     }
 
     public LancamentosEntity getById(Long id) {
@@ -52,19 +50,28 @@ public class LancamentosService {
         return lancamentosRepository.getById(id);
     }
 
-    public LancamentosEntity update(Long id, LancamentosDTO lancamentosDTO) throws LancamentosNotFoundException {
-        Optional<LancamentosEntity> opt = lancamentosRepository.findById(id);
-        try {
-            if (opt.isPresent()) {
-                lancamentosRepository.save(mapToDTo(lancamentosDTO));
-            } else {
-                throw new LancamentosNotFoundException("id já existe no banco");
-            }
-        } catch (LancamentosNotFoundException e) {
-            e.printStackTrace();
-        }
-        return lancamentosRepository.save(mapToDTo(lancamentosDTO));
+
+    public void update(Long id) {
+        LancamentosDTO lancamentosDTO = new LancamentosDTO();
+        LancamentosEntity lancamentosEntity = lancamentosRepository.findById(id).orElseThrow(() ->
+                new LancamentosNotFoundException("Categoria não encontrada"));
+        lancamentosEntity.setName(lancamentosDTO.getName());
+        lancamentosEntity.setDescription(lancamentosDTO.getDescription());
+        lancamentosRepository.save(lancamentosEntity);
     }
+//    public LancamentosEntity update(Long id, LancamentosDTO lancamentosDTO) throws LancamentosNotFoundException {
+//        Optional<LancamentosEntity> opt = lancamentosRepository.findById(id);
+//        try {
+//            if (opt.isPresent()) {
+//                lancamentosRepository.save(mapToDTO(lancamentosDTO));
+//            } else {
+//                throw new LancamentosNotFoundException("id já existe no banco");
+//            }
+//        } catch (LancamentosNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        return lancamentosRepository.save(mapToDTO(lancamentosDTO));
+//    }
 
     public void deleteLancamentos(Long id) {
         Optional<LancamentosEntity> opt = lancamentosRepository.findById(id);
@@ -78,6 +85,20 @@ public class LancamentosService {
             e.printStackTrace();
         }
     }
+
+//    public void deleteLancamentos(Long id) {
+//        Optional<LancamentosEntity> opt = lancamentosRepository.findById(id);
+//        try {
+//            if (opt.isPresent()) {
+//                lancamentosRepository.deleteById(id);
+//            } else {
+//                throw new LancamentosNotFoundException("id não encontrado");
+//            }
+//        } catch (LancamentosNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public Integer calculaMedia (Integer x, Integer y){
 
         try {
@@ -87,15 +108,33 @@ public class LancamentosService {
         }
     }
 
-    private LancamentosEntity mapToDTo(LancamentosDTO dto) {
-        return modelMapper.map(dto, LancamentosEntity.class);
+
+    public LancamentosEntity mapToLancamentos(LancamentosDTO lancamentosDTO) {
+        LancamentosEntity lancamentosEntity = modelMapper.map(lancamentosDTO, LancamentosEntity.class);
+        return lancamentosEntity;
     }
 
-    private LancamentosEntity mapToEntity(LancamentosEntity lancamentosDTO) {
-        return modelMapper.map(lancamentosDTO, LancamentosEntity.class);
+    private LancamentosDTO mapToDTO(LancamentosEntity lancamentosEntity) {
+        LancamentosDTO lancamentosDTO = modelMapper.map(lancamentosEntity, LancamentosDTO.class);
+        return lancamentosDTO;
     }
 }
 
+//
+//    public CategoriaDTO mapToDTO(CategoriaEntity categoryEntity){
+//        CategoriaDTO categoriaDTO = modelMapper.map(categoryEntity, CategoriaDTO.class);
+//        return categoriaDTO;
+//    }
+
+
+//    @Autowired
+//    private CategoriaRepository categoriaRepository;
+
+//    private List<LancamentosDTO> lancamentosDTO = new ArrayList<>();
+
+//    public LancamentosEntity save (LancamentosEntity lancamentos){
+//        return lancamentosRepository.save(lancamentos);
+//    }
 
 //    public void create(LancamentosEntity lancamentos) throws LancamentosNotFoundException {
 //        long idCategory = 0;

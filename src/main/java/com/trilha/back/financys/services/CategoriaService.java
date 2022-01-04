@@ -42,11 +42,6 @@ CategoriaService {
             .map(this::mapToDTO).collect(Collectors.toList());
     }
 
-//    public List<CategoriaEntity> getAll (CategoriaDTO dto) {
-//        return categoriaRepository.findAll()
-//                 .stream().map(i -> mapToDTo(dto))
-//                 .collect(Collectors.toCollection(ArrayList::new));
-//    }
 
     public CategoriaEntity getById(Long id) {
         Optional<CategoriaEntity> opt = categoriaRepository.findById(id);
@@ -71,8 +66,36 @@ CategoriaService {
         categoriaRepository.save(categoriaEntity);
     }
 
+    public void deleteCategory(Long id) {
+        Optional<CategoriaEntity> opt = categoriaRepository.findById(id);
+        try {
+            if (opt.isPresent()) {
+                categoriaRepository.deleteById(id);
+            } else {
+                throw new CategoriaNotFoundException("id não encontrado");
+            }
+        } catch (CategoriaNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public CategoriaEntity mapToCategoria(CategoriaDTO categoriaDTO){
+        CategoriaEntity categoriaEntity = modelMapper.map(categoriaDTO, CategoriaEntity.class);
+        return categoriaEntity;
+    }
+
+    public CategoriaDTO mapToDTO(CategoriaEntity categoryEntity){
+        CategoriaDTO categoriaDTO = modelMapper.map(categoryEntity, CategoriaDTO.class);
+        return categoriaDTO;
+    }
 
 
+
+//    public List<CategoriaEntity> getAll (CategoriaDTO dto) {
+//        return categoriaRepository.findAll()
+//                 .stream().map(i -> mapToDTo(dto))
+//                 .collect(Collectors.toCollection(ArrayList::new));
+//    }
 
 //    public void update(Long id) throws CategoriaNotFoundException{
 //        CategoriaDTO categoriaDTO = new CategoriaDTO();
@@ -114,30 +137,6 @@ CategoriaService {
 //        }
 //        return categoriaRepository.save(entity);
 //    }
-
-    public void deleteCategory(Long id) {
-        Optional<CategoriaEntity> opt = categoriaRepository.findById(id);
-        try {
-            if (opt.isPresent()) {
-                categoriaRepository.deleteById(id);
-            } else {
-                throw new CategoriaNotFoundException("id não encontrado");
-            }
-        } catch (CategoriaNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public CategoriaEntity mapToCategoria(CategoriaDTO categoriaDTO){
-        CategoriaEntity categoriaEntity = modelMapper.map(categoriaDTO, CategoriaEntity.class);
-        return categoriaEntity;
-    }
-
-    public CategoriaDTO mapToDTO(CategoriaEntity categoryEntity){
-        CategoriaDTO categoriaDTO = modelMapper.map(categoryEntity, CategoriaDTO.class);
-        return categoriaDTO;
-    }
-
 
 //    private CategoriaEntity mapToDTo(CategoriaDTO dto) {
 //        return modelMapper.map(dto, CategoriaEntity.class);
