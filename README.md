@@ -340,40 +340,121 @@ suas modificações.
 
 ## Desafio 9
 
-Prólogo:
-Seu objetivo durante o desafio 9 é conhecer os principais modelos de design patterns,
-arquiteturas de software e alguns princípios de qualidade de software, com o intuito
-de conhecer fórmulas já validadas de construção de projetos que visam solucionar
-vários tipos de problemas de gestão/organização do código/arquivos,
-reaproveitamento de código, limitações no desenvolvimento futuro, difícil manutenção,
-entre outros problemas já identificados pela comunidade e pelos criadores desses
-padrões e arquiteturas.
+Prólogo: Seu objetivo durante o desafio 9 é conhecer os principais modelos de design 
+patterns, arquiteturas de software e alguns princípios de qualidade de software, com 
+o intuito de conhecer fórmulas já validadas de construção de projetos que visam solucionar 
+vários tipos de problemas de gestão/organização do código/arquivos, reaproveitamento 
+de código, limitações no desenvolvimento futuro, difícil manutenção, entre outros 
+problemas já identificados pela comunidade e pelos criadores desses padrões e arquiteturas.
 
 a) O que é um padrão de projeto e por que nós os utilizamos? (máx 5 linhas)
 
-R: Os padrões de projetos são soluções testadas, conhecidas e já implementadas pela comunidade de
-desenvolvedores. Os padrões são descrições de alto nível de uma solução. São também conhecidos como 
-conceitos gerais para resolver problemas particulares de uma aplicação. Utilizamos um padrão de projeto
-para resolver problemas particulares em nossa aplicação.
+R: Os padrões de projetos são soluções testadas, conhecidas e já implementadas pela 
+comunidade de desenvolvedores. Os padrões são descrições de alto nível de uma solução. 
+São também conhecidos como conceitos gerais para resolver problemas particulares de uma 
+aplicação. Utilizamos um padrão de projeto para resolver problemas particulares em nossa 
+aplicação.
 
-b) Cite e explique com suas palavras:
-I. Um dos padrões de criação:  
-II. Um dos padrões estruturais;
-III. Um dos padrões comportamentais;
+b) Cite e explique com suas palavras: 
+I. Um dos padrões de criação: Singleton - este padrão criacional permite que uma classe 
+tenha apenas uma instância e este vai acessar apenas um ponto global para a instância.
 
-c) Explique o conceito de arquitetura de software e seu proposito; (máx 5 linhas)
-R: 
+II. Um dos padrões estruturais: Adapter - este padrão estrutural é um objeto especial 
+que converte a interface de um objeto para outro, como por exemplo XML para JSON.
 
-d) Até o atual momento devemos ter criado 12 classes, o seu projeto deve estar bem
-parecido com um dos dois cenários abaixo:
+III. Um dos padrões comportamentais: Iterator - este é um padrão de projeto comportamental 
+que permite percorrer os elementos presentes em uma coleção sem que suas representações 
+sejam expostas (lista. pilha, árvore, etc)
 
-I. Qual arquitetura estamos seguindo até o momento? Justifique sua resposta.
-(máx 10 linhas)
+c) Explique o conceito de arquitetura de software e seu proposito; (máx 5 linhas) 
+R: A Arquitetura de Software são conjuntos de ferramentas que já foram implmentadas e 
+testadas de forma para serem soluções de problemas comuns em projetos de softwares. 
+Além de implementar padrões para os projetos estes podem também são padrões que facilitam 
+a comunicação técnica entre membros da equipe e pessoas que futuramente irão trabalhar com 
+os códigos que já foram desenvolvidos.
 
-e) Crie uma nova branch a partir da atual: trilha-back-seunome-DDD. Em seguida
-refatore o projeto da nova branch para o padrão de arquitetura DDD.
-f) Crie uma nova branch a partir da atual: trilha-back-seunome-clean. Em seguida
-refatore o projeto da nova branch para o padrão de arquitetura hexagonal.
-g) O que significa a sigla SOLID?
-h) Quais princípios foram utilizados no projeto até o momento? Explique.
-(máx 10 linhas)
+d) Até o atual momento devemos ter criado 12 classes, o seu projeto deve estar bem parecido 
+com um dos dois cenários abaixo:
+R: Sim, com o padrão em pacotes
+
+I. Qual arquitetura estamos seguindo até o momento? Justifique sua resposta. (máx 10 linhas) 
+R: O projeto da Trilha está sendo desenvolvido por arquitetura de Camadas e percebemos este fato 
+quando observamos a organização das responsabilidades de cada parte do software, pois isolamos as 
+ações de cada parte do software e cada propósito está bem definido estes podem ser substituídos ou 
+reutilizados.
+
+e) Crie uma nova branch a partir da atual: trilha-back-seunome-DDD. Em seguida refatore o projeto da 
+nova branch para o padrão de arquitetura DDD. 
+
+f) Crie uma nova branch a partir da atual:trilha-back-seunome-clean. Em seguida refatore o projeto 
+da nova branch para o padrão de arquitetura hexagonal.
+
+g) O que significa a sigla SOLID? 
+R: SOLID é o acrônimo para cinco princípios da programação orientada a objetos e cada letra significa:
+
+Single Responsability Principle ou Princípio da Responsabilidade Única;
+Open/closed Principle ou Princípio do aberto/fechado;
+Liskov Substitution Principle ou Princípio da Substituição de Liskov;
+Interface Segregation Principle ou Princípio da Segregação de Interfaces;
+Dependency Inversion Principle ou Princípio da Inversão de Dependências.
+h) Quais princípios foram utilizados no projeto até o momento? Explique. (máx 10 linhas)
+R: No projeto da Trilha foram usados os seguintes princípios: 
+a) Responsabilidade Única: cada classe tem sua responsabilidade única, por exemplo: Entity, 
+Controller, Service e Repository; 
+b) Principio aberto/fechado: os atributos da categoria e lançamentos são abertos(acessíveis por get e set)
+mas fechados para serem modificados de forma direta; 
+c) Princípio da Inversão de Dependência:Tanto a Categoria como os Lançamentos usam a interface de 
+implementação do JPA para assim usar seus métodos na Service.
+
+## Desafio 10
+Crie uma nova branch em seu repositório com o nome “desafio10” a partir da “main”, responda as perguntas 
+no documento README.md.
+
+a) O que você entende por Spring Framework? 
+R:
+
+b) Cite 3 exemplos de ferramentas Spring e suas respectivas finalidades; 
+R:
+
+c) Quais ferramentas do Spring foram utilizadas na trilha até o momento? 
+R:
+
+d) Cite 5 vantagens em utilizar Spring; 
+R:
+
+e) Descreva os passos de criação de uma Web API Spring boot, com conexão com SQL Server; 
+R:
+
+f) Qual a funcionalidade do pom.xml? 
+R:
+
+g) Qual a funcionalidades do applications.properties? 
+R:
+
+h) Qual o propósito das Annotations? 
+R:
+
+i) Cite 10 annotations, com suas respectivas finalidades e descreva ou desenhe um cenário exemplificando 
+a sua utilização; Exemplo: @Autowired Anotação utilizada para marcar o ponto de injeção na sua classe. 
+Você pode colocar ela sobre atributos ou sobre o seu construtor com argumentos. Comumente utilizada para 
+injetar classes de serviço e de repositórios;
+
+R:
+
+j) O que é um advice em Spring? Quais os tipos de advice para o Spring? 
+R:
+
+k) O que é Spring IoC Container? 
+R:
+
+l) Como adicionamos segurança à nossa aplicação Spring? 
+R:
+
+m) Qual é o pacote Spring responsável pelas conexões com os bancos de dados? 
+R:
+
+n) Explique e exemplifique como criar um agendamento de execução de métodos Spring; 
+Cite exemplos de usabilidade; 
+R:
+
+Versione seu código na branch “desafio10” na branch “main” para atualizar com suas modificações.
