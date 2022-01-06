@@ -42,7 +42,7 @@ public class CategoriaService {
     public void updateById(Long id, CategoriaDTO categoriaDTO) {
 
         CategoriaEntity categoriaAtualiza = categoriaRepository.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException("Categoria não encontrada"));
+                .orElseThrow(() -> new CategoriaNotFoundException("Categoria não encontrada"));
         categoriaAtualiza.setName(categoriaDTO.getName());
         categoriaAtualiza.setDescription(categoriaDTO.getDescription());
         categoriaRepository.save(categoriaAtualiza);
@@ -54,9 +54,9 @@ public class CategoriaService {
             if (opt.isPresent()) {
                 categoriaRepository.deleteById(id);
             } else {
-                throw new ObjectNotFoundException("id não encontrado");
+                throw new CategoriaNotFoundException("id não encontrado");
             }
-        } catch (ObjectNotFoundException e) {
+        } catch (CategoriaNotFoundException e) {
             e.printStackTrace();
         }
     }

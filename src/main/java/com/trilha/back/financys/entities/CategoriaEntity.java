@@ -22,8 +22,8 @@ public class CategoriaEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_categoria")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @NotNull(message = "Campo nome não pode ser nulo ou vazio")
@@ -36,8 +36,8 @@ public class CategoriaEntity implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "categoria_id")
-    @JsonIgnore
-    private List<LancamentosEntity> lancamentos;
 
+    @JsonIgnore
+    @OneToMany (mappedBy = "categoria_id")
+    private List<LancamentosEntity> lancamentos;
 }

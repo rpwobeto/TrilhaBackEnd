@@ -2,6 +2,7 @@ package com.trilha.back.financys.services;
 
 import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.LancamentosEntity;
+import com.trilha.back.financys.exceptions.DivisaoZeroException;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
 import com.trilha.back.financys.exceptions.ObjectNotFoundException;
 import com.trilha.back.financys.repositories.LancamentosRepository;
@@ -38,7 +39,7 @@ public class LancamentosService {
     public void updateById(Long id, LancamentosDTO lancamentosDTO) {
 
         LancamentosEntity lancamentosAtualiza = lancamentosRepository.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException("Lançamento não encontrado"));
+                .orElseThrow(() -> new LancamentosNotFoundException("Lançamento não encontrado"));
         lancamentosAtualiza.setName(lancamentosDTO.getName());
         lancamentosAtualiza.setDescription(lancamentosDTO.getDescription());
         lancamentosRepository.save(lancamentosAtualiza);
@@ -58,9 +59,9 @@ public class LancamentosService {
             if (opt.isPresent()) {
                 lancamentosRepository.deleteById(id);
             } else {
-                throw new ObjectNotFoundException("id não encontrado");
+                throw new LancamentosNotFoundException("id não encontrado");
             }
-        } catch (ObjectNotFoundException e) {
+        } catch (LancamentosNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -70,7 +71,7 @@ public class LancamentosService {
         try {
             return (x / y);
         } catch (ArithmeticException e) {
-            throw new ObjectNotFoundException("Nenhum número pode ser dividido por zero. ");
+            throw new DivisaoZeroException("Nenhum número pode ser dividido por zero. ");
         }
     }
 

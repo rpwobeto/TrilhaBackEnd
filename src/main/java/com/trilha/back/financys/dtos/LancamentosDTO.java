@@ -2,7 +2,6 @@ package com.trilha.back.financys.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Data
@@ -19,7 +18,7 @@ public class LancamentosDTO {
 
     private String amount;
 
-    @JsonFormat( shape= JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
 
     private Boolean paid;
