@@ -406,3 +406,168 @@ mas fechados para serem modificados de forma direta;
 c) Princípio da Inversão de Dependência:Tanto a Categoria como os Lançamentos usam a interface de 
 implementação do JPA para assim usar seus métodos na Service.
 
+## Desafio 10
+
+Prólogo:Seu objetivo durante o desafio 10 é se aprofundar no universo Spring, conhecendo um
+pouco mais de perto seu repertório e funcionalidades. O foco está em saber montar um
+ambiente Spring, sabendo criar uma nova aplicação, realizar as configurações
+necessárias, aproveitar as facilidades que a ferramenta te trás. Com o intuito de
+acelerar o desenvolvimento e otimizar a performance da aplicação.
+
+Crie uma nova branch em seu repositório com o nome “desafio10” a partir da
+“main”, responda as perguntas no documento README.md.
+a) O que você entende por Spring Framework?
+R: O Spring Boot é um framework Java open source que tem como objetivo facilitar os
+processos de configuração para otimizar o tempo de desenvolvimento de aplicações Java.
+
+b) Cite 3 exemplos de ferramentas Spring e suas respectivas finalidades;
+R: Spring Web, Spring Data JPA e Spring Actuator. Quanto ao Spring Web pode-se dizer
+que essa dependência facilita a comunicação da aplicação com a web através de requisições HTTP,
+já o Spring Data cuida do relacionamento com o banco de banco e o Spring Actuator nos
+permite saber a saúde e métrica da aplicação.
+
+c) Quais ferramentas do Spring foram utilizadas na trilha até o momento?
+R:Até o momento foram utilizados: o Spring Web, o Spring Data JPA, o Spring Dev Tools , o H2, o Lombok e o ModelMapper.
+
+d) Cite 5 vantagens em utilizar Spring;
+R:
+1) O maior benefício de usar o Spring Boot é conseguir otimizar seu tempo e aumentar sua produtividade,
+   já que ele simplifica o desenvolvimento de aplicações;
+2) Possui um servidor embarcado(o TomCat);
+3) Ajuda na organização do pom.xml;
+4) Facilita a injeção de dependências;
+5) Auxilia com tarefas do dia a dia, iniciando e atualizando a aplicação através do Spring Dev tools
+
+
+e) Descreva os passos de criação de uma Web API Spring boot, com conexão com SQL Server;
+R:
+Primeiramente, devemos acessar o site do spring initializr e preencher as informações:
+- Project: Selecione a opção Maven ou Gradle
+- Language: Selecione a opção Java
+- Spring Boot: A versão mais recente (ou mais estável)
+- Group: Configure de acordo sua preferência
+- Artifcat: Configure de acordo sua preferência
+- Packaging: Jar
+- Java: 8, 11 ou outra versão (de preferência LTS)
+
+Em seguida, selecione as dependências necessárias para o desenvolvimento do projeto e faça o download.
+Para fazer uma conexão com banco SQL Server é preciso configurar o application.properties da seguinte maneira:
+
+spring.datasource.url=jdbc:sqlserver://localhost;databaseName=springbootdb
+
+spring.datasource.username=sa
+spring.datasource.password=
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto = create-drop
+spring.jpa.hibernate.dialect=org.hibernate.dialect.SQLServer2012Dialect
+
+<!--https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+
+<dependency>
+
+<groupId>com.microsoft.sqlserver</groupId>
+
+<artifactId>mssql-jdbc</artifactId>
+
+<version>9.5.0.jre8-preview</version>
+
+</dependency>
+
+
+f) Qual a funcionalidade do pom.xml?
+R:O pom.xml serve para realizarmos a configuração da aplicação, bem como a importação de dependências e subdependências.
+
+g) Qual a funcionalidades do applications.properties?
+R: No application.properties, estabelecemos a comunicação com o banco de dados que por sua vez, pode ser relacional ou não-relacional .
+
+h) Qual o propósito das Annotations?
+R: O uso de anotações varia de acordo com a funcionalidade dela, no geral, elas podem auxiliar na injeção de dependência, como por exemplo o
+uso do @Autowired.
+
+i) Cite 10 annotations, com suas respectivas finalidades e descreva ou desenhe um cenário exemplificando a sua utilização;
+Exemplo:
+
+@Autowired
+Anotação utilizada para marcar o ponto de injeção na sua classe. Você pode colocarela sobre atributos ou sobre o seu construtor com argumentos.
+Comumente utilizada para injetar classes de serviço e de repositórios;
+
+R:
+1) @Controller
+
+Essa annotation é usada para criar uma classe como um controlador (controller), que pode manipular solicitações (requests) do cliente e enviar uma
+resposta (response) de volta ao cliente.
+
+2) @RequestMapping
+
+É uma annotation no nível do método que é colocada sobre um método. Ele fornece o mapeamento entre o caminho da solicitação e o método manipulador.
+Ele também suporta algumas opções avançadas que podem ser usadas para especificar métodos separados para diferentes tipos de solicitação no mesmo URI.
+
+3) @RequestParam
+
+Essa é outra anotação muito útil do Spring MVC, usada para mapear os parâmetros HTTP a argumentos de métodos.
+
+4) @PathVariable
+
+Essa é outra anotação usada para recuperar dados da URL.
+
+5) @RequestBody
+
+Essa annotation pode converter dados de entrada em objetos Java passados para o método do controlador.
+
+6) @ResponseBody
+
+Essa annotation é usada para transformar um objeto Java retornado do controller em uma representação de recurso solicitada por um cliente REST.
+
+7) @RestController
+
+Essa é uma annotation muito conveniente para o desenvolvimento de serviços RESTful com o Framework Spring MVC.
+
+8) @SpringBootApplication
+
+Essa annotation única combina três anotações como @Configuration, @EnableAutoConfiguration e @ComponentScan. Através do uso do Spring Boot,
+podemos executar a aplicação sem a necessidade de instalarmos em um servidor Web, pois ele vem com um servidor Tomcat embarcado.
+
+9) @EnableAutoConfiguration
+
+Essa é outra annotation de inicialização do Spring que ativa o recurso de configuração automática, o que faz com que o Spring “adivinhe” a
+configuração baseada nos JAR apresentados no classpath.
+
+10) @ResponseStatus
+
+Esta annotation pode ser usada para substituir o código de resposta HTTP de uma resposta(response).
+
+j) O que é um advice em Spring? Quais os tipos de advice para o Spring?
+R:O Advice em Spring é uma ação realizada por um aspecto em um ponto de junção específico. Há diferentes tipos de advices como “ao redor”,
+“antes” e “depois”. O principal objetivo do uso deles é oferecer suporte a questões transversais, como registro, criação de perfil,
+armazenamento em cache e gerenciamento de transações.
+
+Tipos de Advice:
+
+a) Before Advice
+É declarado usando a anotação @Before, como o nome indica, é executado antes do ponto de junção. Isso não impede a execução contínua do método recomendado, a menos que uma exceção seja lançada.
+
+b) After Advice
+É declarado usando a anotação @After, é executado após a execução de um método correspondente, independentemente de uma exceção ter sido lançada ou não.
+
+c) Around Advice
+É declarado usando a anotação @Around. Este é o tipo de advice mais poderoso. O advice Around pode realizar um comportamento personalizado antes e depois
+da invocação do método. Ele também é responsável por escolher se deve prosseguir para o ponto de junção ou atalho para a execução do método recomendado
+fornecendo seu próprio valor de retorno ou lançando uma exceção.
+
+k) O que é Spring IoC Container?
+R:IoC também é conhecido como injeção de dependência (DI). É um processo pelo qual os objetos definem suas dependências.
+
+l) Como adicionamos segurança à nossa aplicação Spring?
+R:Através do uso Spring Security temos acesso a vários recursos de autenticação e de autorização que protegem a nossa aplicação.
+
+m) Qual é o pacote Spring responsável pelas conexões com os bancos de dados?
+R:O pacote responsável pela conexão com o banco de dados é o Spring Data.
+
+n) Explique e exemplifique como criar um agendamento de execução de métodos Spring; Cite exemplos de usabilidade;
+R: uma task serve para mostrar determinadas atividades que serão realizadas através da nossa aplicação a depender do período de tempo configurado.
+Nesse sentido, fiz uma task à qual deve ser mostrada a cada 2 segundos. Assim, crie uma nova classe, marque com a anotação @Component para indicar
+que ela usará o padrão de injeção de dependência e seguida marque o método startTask1 com a anotação @Scheduled para configurar o tempo de execução
+da task que será a cada 2 segundos, como já citado anteriormente.
+
+Versione seu código na branch “desafio10” na branch “main” para atualizar com suas modificações.
