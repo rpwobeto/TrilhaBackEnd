@@ -52,10 +52,14 @@ public class LancamentosEntity implements Serializable {
     @Column(name = "paid")
     private boolean paid;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
-    private CategoriaEntity categoria_id;
+    private CategoriaEntity categoria;
+
+//    public Object findByCategoryId(Long id) {
+//        return getDataLancamento();
+//    };
 
     public boolean getPaid() {
         return paid;
@@ -64,7 +68,7 @@ public class LancamentosEntity implements Serializable {
     public void isPaid(boolean paid) {
         this.paid = paid;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,12 +80,12 @@ public class LancamentosEntity implements Serializable {
                 && Objects.equals(type, lancamentosEntity.type)
                 && Objects.equals(amount, lancamentosEntity.amount)
                 && Objects.equals(date, lancamentosEntity.date)
-                && Objects.equals(categoria_id, lancamentosEntity.categoria_id);
+                && Objects.equals(categoria, lancamentosEntity.categoria);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, type, amount, date, paid, categoria_id);
+        return Objects.hash(id, name, description, type, amount, date, paid, categoria);
     }
 }
 
