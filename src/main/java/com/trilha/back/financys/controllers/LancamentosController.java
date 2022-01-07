@@ -49,13 +49,6 @@ public class LancamentosController {
         return ResponseEntity.ok().body(lancamentosService.getById(id)).getBody();
     }
 
-//    @PutMapping(path = "/update/{id}")
-//    @ApiOperation(value = "Atualiza o lançamento criado através do ID")
-//    public ResponseEntity<LancamentosDTO> update(@PathVariable Long id, @RequestBody LancamentosDTO Dto) {
-//        LancamentosDTO newDto = lancamentosService.updateById(id,Dto);
-//        return ResponseEntity.ok().body(newDto);
-//    }
-
     @PutMapping(path = "/update/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody LancamentosDTO lancamentosDTO) {
         lancamentosService.updateById(id,lancamentosDTO);

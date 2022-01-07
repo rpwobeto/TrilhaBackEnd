@@ -4,7 +4,6 @@ import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.DivisaoZeroException;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
-import com.trilha.back.financys.exceptions.ObjectNotFoundException;
 import com.trilha.back.financys.repositories.LancamentosRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -47,13 +46,6 @@ public class LancamentosService {
         lancamentosRepository.save(lancamentosAtualiza);
     }
 
-//    public LancamentosDTO updateById(Long id, LancamentosDTO Dto ){
-//        LancamentosDTO newDto = lancamentosRepository.findById(id)
-//                .orElseThrow(() -> new LancamentosNotFoundException("Lançamento não encontrado"));
-//        newDto.setName(Dto.getName());
-//        newDto.setDescription(Dto.getDescription());
-//        return lancamentosRepository.save(newDto);
-//    }
 
     public void deleteLancamentos(Long id) {
         Optional<LancamentosEntity> opt = lancamentosRepository.findById(id);
