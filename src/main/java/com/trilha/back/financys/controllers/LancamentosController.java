@@ -32,8 +32,8 @@ public class LancamentosController {
     @PostMapping(value = "/create")
     @ApiOperation(value = "Cria um Lancamento")
     @ResponseStatus(HttpStatus.CREATED)
-    public LancamentosEntity save (@RequestBody LancamentosDTO lancamentosDTO) {
-        return ResponseEntity.ok().body(lancamentosService.save(lancamentosDTO)).getBody();
+    public ResponseEntity<LancamentosEntity> save(@RequestBody LancamentosDTO lancamentosDTO) {
+        return ResponseEntity.ok(lancamentosService.save(lancamentosDTO));
     }
 
     @GetMapping (value= "/get-all")

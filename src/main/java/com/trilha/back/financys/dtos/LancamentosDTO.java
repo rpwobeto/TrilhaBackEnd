@@ -1,6 +1,7 @@
 package com.trilha.back.financys.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.trilha.back.financys.entities.CategoriaEntity;
 import lombok.*;
 import java.time.LocalDate;
 
@@ -22,5 +23,7 @@ public class LancamentosDTO {
     private LocalDate date;
 
     private Boolean paid;
+
+    private CategoriaEntity categoria;
 
 }

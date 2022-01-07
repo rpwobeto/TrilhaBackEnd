@@ -31,7 +31,7 @@ public class LancamentosEntity implements Serializable {
 
     @NotNull(message = "Campo de descrição não pode ser vazia ou nula")
     @Size(min = 15, max = 150, message = "min 15 a 150 caracteres")
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
 
     @NotNull(message = "Campo tipo não pode ser nula ou vazia")
@@ -50,16 +50,12 @@ public class LancamentosEntity implements Serializable {
 
     @NotNull(message = "O campo pago não pode ser nulo ou vazio, aceita apenas sim ou não")
     @Column(name = "paid")
-    private boolean paid;
+    private boolean paid = false;
 
-    //@JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "categoria_id", referencedColumnName = "id")
+    @JoinColumn(name = "categoria", referencedColumnName = "id")
     private CategoriaEntity categoria;
 
-//    public Object findByCategoryId(Long id) {
-//        return getDataLancamento();
-//    };
 
     public boolean getPaid() {
         return paid;

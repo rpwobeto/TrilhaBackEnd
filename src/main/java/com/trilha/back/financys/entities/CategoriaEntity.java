@@ -36,10 +36,8 @@ public class CategoriaEntity implements Serializable {
     @Column(name = "description")
     private String description;
 
-
     @OneToMany (mappedBy = "categoria")
     @JsonIgnore
     private List<LancamentosEntity> lancamentos;
 
-    //public CategoriaEntity(int indexOf) { }
 }

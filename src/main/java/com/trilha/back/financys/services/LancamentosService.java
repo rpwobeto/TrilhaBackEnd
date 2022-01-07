@@ -23,7 +23,9 @@ public class LancamentosService {
     private ModelMapper modelMapper;
 
     public LancamentosEntity save(LancamentosDTO lancamentosDTO) {
-        return lancamentosRepository.save(mapToLancamentos(lancamentosDTO));
+        LancamentosEntity lancamentosEntity = modelMapper.map(lancamentosDTO, LancamentosEntity.class);
+        lancamentosRepository.save(lancamentosEntity);
+        return lancamentosEntity;
     }
 
     public List<LancamentosEntity> getAll(){
