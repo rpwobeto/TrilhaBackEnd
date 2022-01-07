@@ -39,5 +39,4 @@ public class CategoriaEntity implements Serializable {
     @OneToMany (mappedBy = "categoria")
     @JsonIgnore
     private List<LancamentosEntity> lancamentos;
-
 }

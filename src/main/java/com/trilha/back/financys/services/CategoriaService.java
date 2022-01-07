@@ -3,7 +3,6 @@ package com.trilha.back.financys.services;
 import com.trilha.back.financys.dtos.CategoriaDTO;
 import com.trilha.back.financys.entities.CategoriaEntity;
 import com.trilha.back.financys.exceptions.CategoriaNotFoundException;
-import com.trilha.back.financys.exceptions.ObjectNotFoundException;
 import com.trilha.back.financys.repositories.CategoriaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
