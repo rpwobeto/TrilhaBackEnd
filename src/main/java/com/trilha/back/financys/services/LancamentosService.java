@@ -62,21 +62,21 @@ public class LancamentosService {
         }
     }
 
-//    public List<ChartDTO> grafico() {
-//        List<ChartDTO> lists= new ArrayList<>();
-//        lancamentosRepository.findAll()
-//                .stream()
-//                .forEach(categoriaEntity -> {
-//                    ChartDTO chartDto = new ChartDTO();
-//                    chartDto.setName(categoriaEntity.getName()); //getName ou getNameCategoriaEntity?
-//                    chartDto.setTotal(0.0);
-//                    categoriaEntity.getLancamentosEntity().forEach(lan->{
-//                        chartDto.setTotal(lan.getAmount() + chartDto.getTotal());
-//                    });
-//                    lists.add(chartDto);
-//                });
-//        return lists;
-//    }
+    public List<ChartDTO> grafico() {
+        List<ChartDTO> lists= new ArrayList<>();
+        lancamentosRepository.findAll()
+                .stream()
+                .forEach(categoriaEntity -> {
+                    ChartDTO chartDto = new ChartDTO();
+                    chartDto.setName(categoriaEntity.getName()); //getName ou getNameCategoriaEntity?
+                    chartDto.setTotal(0.0);
+                    categoriaEntity.getLancamentosEntity().forEach(lan->{
+                        chartDto.setTotal(lan.getAmount() + chartDto.getTotal());
+                    });
+                    lists.add(chartDto);
+                });
+        return lists;
+    }
 
 
     public Integer calculaMedia (Integer x, Integer y){

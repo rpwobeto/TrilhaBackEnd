@@ -612,3 +612,4 @@ R: Através da instrução import ou usando um gerenciador de projetos do Maven.
 III.Escolha um banco de dados (menos o H2) e explique como utilizar o driver de comunicação.
 R: Primeiro, configura-se o pom.xml através do uso de dependência e em seguida utiliza-se o application.properties para 
 estabelecer a comunicação com o banco MySQL e a persistência dos dados.
+

@@ -14,6 +14,6 @@ public class ChartDTO {
 
     private Double amount;
 
-    //private Double total;
+    private Double total;
 
 }
