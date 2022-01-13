@@ -56,6 +56,10 @@ public class LancamentosEntity implements Serializable {
     @JoinColumn(name = "categoria", referencedColumnName = "id")
     private CategoriaEntity categoria;
 
+//    public Object findByCategoryId(Long id) {
+//        return getDataLancamento();
+//    };
+
 
     public boolean getPaid() {
         return paid;

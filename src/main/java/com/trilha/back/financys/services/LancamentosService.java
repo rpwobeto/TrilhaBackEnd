@@ -6,11 +6,15 @@ import com.trilha.back.financys.entities.CategoriaEntity;
 import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.DivisaoZeroException;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
+import com.trilha.back.financys.exceptions.ObjectNotFoundException;
 import com.trilha.back.financys.repositories.LancamentosRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,7 +34,7 @@ public class LancamentosService {
         return lancamentosEntity;
     }
 
-    public List<LancamentosEntity> getAll(){
+    public List<LancamentosEntity> getAll() {
         return lancamentosRepository.findAll();
     }
 
@@ -62,30 +66,22 @@ public class LancamentosService {
         }
     }
 
-    public List<ChartDTO> grafico() {
-        List<ChartDTO> lists= new ArrayList<>();
-        lancamentosRepository.findAll()
-                .stream()
-                .forEach(categoriaEntity -> {
-                    ChartDTO chartDto = new ChartDTO();
-                    chartDto.setName(categoriaEntity.getName()); //getName ou getNameCategoriaEntity?
-                    chartDto.setTotal(0.0);
-                    categoriaEntity.getLancamentosEntity().forEach(lan->{
-                        chartDto.setTotal(lan.getAmount() + chartDto.getTotal());
-                    });
-                    lists.add(chartDto);
-                });
-        return lists;
+    public ResponseEntity<List<LancamentosEntity>> readAll() {
+        List<LancamentosEntity> readAll = lancamentosRepository.findAll();
+        return ResponseEntity.ok(readAll);
     }
 
-
-    public Integer calculaMedia (Integer x, Integer y){
+    public Integer calculaMedia(Integer x, Integer y) throws DivisaoZeroException {
 
         try {
-            return (x / y);
+            if(y <=0){
+                throw new DivisaoZeroException("DivisaoZeroException");
+            }
         } catch (ArithmeticException e) {
-            throw new DivisaoZeroException("Nenhum número pode ser dividido por zero. ");
+
+          e.printStackTrace();
         }
+        return (x/y);
     }
 
     public LancamentosEntity mapToLancamentos(LancamentosDTO lancamentosDTO) {
@@ -97,4 +93,50 @@ public class LancamentosService {
         LancamentosDTO lancamentosDTO = modelMapper.map(lancamentosEntity, LancamentosDTO.class);
         return lancamentosDTO;
     }
+
 }
+
+//    public List<ChartDTO> grafico() {
+//        List<ChartDTO> lists = new ArrayList<>();
+//        lancamentosRepository.findAll()
+//                .stream()
+//                .forEach(categoriaEntity -> {
+//                    ChartDTO chartDTO = new ChartDTO();
+//                    chartDTO.setNameCategoria(categoriaEntity.getName());
+//                    chartDTO.setTotal(0.0);
+//
+//                    categoriaEntity.getLancamentosEntity().forEach(lan -> {
+//                        chartDTO.setTotal(lan.getAmount() + chartDTO.getTotal());
+//                    });
+//                    lists.add(chartDTO);
+//                });
+//        return lists;
+//    }
+
+//
+//    public List<ChartDTO> grafico() {
+////        List<ChartDTO> lists = new ArrayList<>();
+//        List<LancamentosEntity> all = lancamentosRepository.findAll();
+//        List<CategoriaEntity> categoriaLista = categoriaRepository.findAll();
+//        categoriaRepository.getClass();
+//        categoriaLista.stream()
+//                .map(this::toDTO).collect(Collectors.toList());
+////                .stream()
+////                .forEach(categoriaEntity -> {
+////                    ChartDTO chartDTO = new ChartDTO();
+////                    chartDTO.setName(categoriaEntity.getName());
+////                    chartDTO.setTotal(0.0);
+////                    categoriaEntity.getLancamentoEntity().forEach(lan->{
+////                        chartDTO.setTotal(lan.getAmount() + chartDTO.getTotal());
+////                    });
+////                    lists.add(chartDTO);
+////                });
+//        return categoriaLista;
+//    }
+//    public ChartDTO toDto(CategoriaEntity ce){
+//        ChartDTO chartDTO = new ChartDTO();
+//        chartDTO.setName(ce.getName());
+//        chartDTO.setType(ce.getLancamentos().get(0).getType());
+//        chartDTO.setAmount(ce.getLancamentos().get(0).getAmount());
+//        return chartDTO;
+//    }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler{
 
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<GlobalExceptionHandler> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DivisaoZeroException.class)
     public ResponseEntity<String> divisaoZeroException(DivisaoZeroException divisaoZeroException){
         return new ResponseEntity<String>
-                ("Nenhum número pode ser dividido por zero", HttpStatus.BAD_REQUEST);
+                ("Nenhum número pode ser dividido por zero ou por número negativo", HttpStatus.OK);
     }
 
     @ExceptionHandler(CategoriaNotFoundException.class)

@@ -60,10 +60,11 @@ public class LancamentosController {
         lancamentosService.deleteLancamentos(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @GetMapping("/chartDTO")
-    public ResponseEntity<ChartDTO> grafico(){
-        return ResponseEntity.status(HttpStatus.OK).body(lancamentosService.grafico());
-    }
+
+//    @GetMapping("/chartDTO")
+//    public ChartDTO grafico(){
+//        return ResponseEntity.status(HttpStatus.OK).body(lancamentosService.grafico());
+//    }
 
 
     @GetMapping(value = "/calcula/{x}/{y}")

@@ -17,7 +17,7 @@ public class LancamentosDTO {
 
     private String type;
 
-    private Double amount;
+    private String amount;
 
     @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
@@ -25,5 +25,6 @@ public class LancamentosDTO {
     private Boolean paid;
 
     private CategoriaEntity categoria;
+
 
 }
