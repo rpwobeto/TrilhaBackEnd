@@ -42,7 +42,7 @@ public class LancamentosEntity implements Serializable {
     @NotNull(message = "Valor  montante não pode ser nulo ou vazio")
     @Min(value = 0, message = "Valor mínimo permitido é 0")
     @Column(name = "amount")
-    private String amount;
+    private Double amount;
 
     @Size(min = 0, message = "Valor mínimo permitido é 0")
     @Column(name = "date")

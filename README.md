@@ -613,3 +613,54 @@ III.Escolha um banco de dados (menos o H2) e explique como utilizar o driver de 
 R: Primeiro, configura-se o pom.xml através do uso de dependência e em seguida utiliza-se o application.properties para 
 estabelecer a comunicação com o banco MySQL e a persistência dos dados.
 
+## Desafio 12
+
+Prólogo: Seu objetivo durante o desafio 12 deve ser realizar o entendimento sobre testes unitários de forma rasa 
+sobre stack tracer (pilha de erros) para compreender melhor o funcionamento do código, e também a análise de um 
+possível erro no sistema.
+
+Crie uma nova branch em seu repositório com o nome “desafio12” a partir da “main”, responda as perguntas no documento 
+README.md.
+a) Explique o conceito de teste unitário?
+R: Teste unitário é testar de forma automatizada a menor unidade possível de um código para conhecer seu comportamento e
+quão correto ele se comporta. Em linguagens Orientadas a Objetos(ex: Java), falamos em testar os métodos das classes.
+
+b) Descreva como fazer um código de teste.
+R: É necessário criar uma classe no pacote de testes do Spring Boot. Nessa classe, é preciso inserir anotações da 
+framework de testes escolhido(ex: @Mock). Essa anotação serve para virtualizar a classe e rodar o teste nessa classe 
+virtual. Existe também a anotação @Teste que vai acima do método de teste propriamente dito. Nessa classe o desenvolvedor
+passa os valores e os campos a serem testados e também as exceções que ele espera quando da execução do código. 
+Depois, é necessário especificar o comportamento do teste, com o "When" e o "Then". Neste, uma possibilidade é utilizar 
+os "Assertions" para configurar os retornos como False, True, Equals, etc.
+
+c) Qual o intuito do teste unitário?
+R: Com o objetivo de testar a funcionalidade e o retorno dos métodos das classes da API, provendo assim maior 
+confiabilidade e segurança da aplicação. Além disso, amplifica a manutenibilidade, pois serve também como documentação 
+para desenvolvedores novos no projeto.
+
+d) Quais são as ferramentas que utilizamos para realizar testes unitários(2 pelo menos).
+R: JUnit e Mockito
+
+Neste caminho (“src/test/java/”) crie um pacote com o nome “testes”, após a criação do pacote crie uma classe chamada 
+“TrilhaBackTestes” (como mostra a figura abaixo):
+
+Crie um end-point:
+
+Use a classe “service” de lançamentos para fazer as Seguintes regras de negócio:IMPORTANTE: Garanta que exista dados na 
+base para realizar o  testes neste end-point. Hands-on:
+
+a) Instancie o método da classe service na classe controller, de forma que receba as 3 variáveis passadas pelo end-point.
+
+b)Verifique se os valores não estão nulos. (OBS: Tratar erro de acordo com o resultado. Ex:  Se um valor estiver nulo, 
+retorne um erro com o status 404 e a mensagem "Parâmetros com valores errados”);
+
+c) Faça uma busca de todos os lançamentos na base de dados.
+
+d) Agora, filtre pelo parâmetro passado (OBS: Tratar erro de acordo com o resultado. Ex: Se a lista estiver vazia 
+retornar um erro com o status 204 e mensagem “Não existe os dados pelo parâmetro passado”)e) E por fim retorne uma 
+lista filtrada pelos parâmetros passados.Desenvolva o teste unitário para o método acima, digitando abaixo todos stack 
+traces de erros e explique em uma só frase qual o erro (min 20 linhas).DICA: https://bityli.com/Mo47ip (Foquem nos 
+conteúdos dos 3 e 6 desta página. 
+OBS: Irão utilizar esse framework para simular uma aquisição de dados da base)Versione seu código na branch “desafio12”
+na branch “main” para atualizar com suas modificações.
+R:

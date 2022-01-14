@@ -3,6 +3,9 @@ package com.trilha.back.financys.controllers;
 import com.trilha.back.financys.dtos.ChartDTO;
 import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.LancamentosEntity;
+import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
+import com.trilha.back.financys.exceptions.NullPointerException;
+import com.trilha.back.financys.exceptions.ObjectNotFoundException;
 import com.trilha.back.financys.services.CategoriaService;
 import com.trilha.back.financys.services.LancamentosService;
 import io.swagger.annotations.Api;
@@ -72,5 +75,16 @@ public class LancamentosController {
     public Integer calculaMedia (@PathVariable("x") Integer x,
                                  @PathVariable("y") Integer y){
         return lancamentosService.calculaMedia(x, y);
+    }
+
+    @GetMapping(path = "/filter")
+    @ResponseBody
+    public ResponseEntity <List<LancamentosEntity>> getLancamentosDependentes(
+            @RequestParam(value = "date", required = false) String date,
+            @RequestParam(value = "amount", required = false) Double amount,
+            @RequestParam(value = "paid", required = false) boolean paid)
+            throws LancamentosNotFoundException, NullPointerException {
+
+        return new ResponseEntity<>(lancamentosService.getLancamentosDependentes(date, amount, paid), HttpStatus.OK);
     }
 }

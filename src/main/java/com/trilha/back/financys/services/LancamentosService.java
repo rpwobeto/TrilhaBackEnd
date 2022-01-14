@@ -6,6 +6,7 @@ import com.trilha.back.financys.entities.CategoriaEntity;
 import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.DivisaoZeroException;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
+import com.trilha.back.financys.exceptions.NullPointerException;
 import com.trilha.back.financys.exceptions.ObjectNotFoundException;
 import com.trilha.back.financys.repositories.LancamentosRepository;
 import lombok.RequiredArgsConstructor;
@@ -83,6 +84,25 @@ public class LancamentosService {
         }
         return (x/y);
     }
+
+    public List<LancamentosEntity> getLancamentosDependentes(String date, Double amount, Boolean paid)
+            throws LancamentosNotFoundException, NullPointerException {
+        if (date == null || amount == null){
+            throw new LancamentosNotFoundException("Os parâmetros dos Lançamentos têm valores nulos");
+        }
+        List<LancamentosEntity> lancamentos = lancamentosRepository.findAll()
+                .stream()
+                .filter(lancamento -> lancamento.getDate().equals(date)
+                        && lancamento.getAmount().equals(amount)
+                        && lancamento.getPaid() == paid)
+                .collect(Collectors.toList());
+
+        if (CollectionUtils.isEmpty(lancamentos)){
+            throw new NullPointerException("A lista de lançamentos está vazia");
+        }
+        return lancamentos;
+    }
+
 
     public LancamentosEntity mapToLancamentos(LancamentosDTO lancamentosDTO) {
         LancamentosEntity lancamentosEntity = modelMapper.map(lancamentosDTO, LancamentosEntity.class);
