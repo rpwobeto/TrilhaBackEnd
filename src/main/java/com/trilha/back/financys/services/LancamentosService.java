@@ -1,12 +1,9 @@
 package com.trilha.back.financys.services;
 
-import com.trilha.back.financys.dtos.ChartDTO;
 import com.trilha.back.financys.dtos.LancamentosDTO;
-import com.trilha.back.financys.entities.CategoriaEntity;
 import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.DivisaoZeroException;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
-import com.trilha.back.financys.exceptions.NullPointerException;
 import com.trilha.back.financys.exceptions.ObjectNotFoundException;
 import com.trilha.back.financys.repositories.LancamentosRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -85,10 +81,9 @@ public class LancamentosService {
         return (x/y);
     }
 
-    public List<LancamentosEntity> getLancamentosDependentes(String date, Double amount, Boolean paid)
-            throws LancamentosNotFoundException, NullPointerException {
+    public List<LancamentosEntity> getLancamentosDependentes(String date, Double amount, Boolean paid) throws LancamentosNotFoundException {
         if (date == null || amount == null){
-            throw new LancamentosNotFoundException("Os parâmetros dos Lançamentos têm valores nulos");
+            throw new LancamentosNotFoundException("Os parâmetros do Lançamento têm valores nulos");
         }
         List<LancamentosEntity> lancamentos = lancamentosRepository.findAll()
                 .stream()
@@ -98,65 +93,12 @@ public class LancamentosService {
                 .collect(Collectors.toList());
 
         if (CollectionUtils.isEmpty(lancamentos)){
-            throw new NullPointerException("A lista de lançamentos está vazia");
+            throw new ObjectNotFoundException("Objeto não encontrado");
         }
         return lancamentos;
     }
 
-
     public LancamentosEntity mapToLancamentos(LancamentosDTO lancamentosDTO) {
-        LancamentosEntity lancamentosEntity = modelMapper.map(lancamentosDTO, LancamentosEntity.class);
-        return lancamentosEntity;
+        return  modelMapper.map(lancamentosDTO, LancamentosEntity.class);
     }
-
-    private LancamentosDTO mapToDTO(LancamentosEntity lancamentosEntity) {
-        LancamentosDTO lancamentosDTO = modelMapper.map(lancamentosEntity, LancamentosDTO.class);
-        return lancamentosDTO;
-    }
-
 }
-
-//    public List<ChartDTO> grafico() {
-//        List<ChartDTO> lists = new ArrayList<>();
-//        lancamentosRepository.findAll()
-//                .stream()
-//                .forEach(categoriaEntity -> {
-//                    ChartDTO chartDTO = new ChartDTO();
-//                    chartDTO.setNameCategoria(categoriaEntity.getName());
-//                    chartDTO.setTotal(0.0);
-//
-//                    categoriaEntity.getLancamentosEntity().forEach(lan -> {
-//                        chartDTO.setTotal(lan.getAmount() + chartDTO.getTotal());
-//                    });
-//                    lists.add(chartDTO);
-//                });
-//        return lists;
-//    }
-
-//
-//    public List<ChartDTO> grafico() {
-////        List<ChartDTO> lists = new ArrayList<>();
-//        List<LancamentosEntity> all = lancamentosRepository.findAll();
-//        List<CategoriaEntity> categoriaLista = categoriaRepository.findAll();
-//        categoriaRepository.getClass();
-//        categoriaLista.stream()
-//                .map(this::toDTO).collect(Collectors.toList());
-////                .stream()
-////                .forEach(categoriaEntity -> {
-////                    ChartDTO chartDTO = new ChartDTO();
-////                    chartDTO.setName(categoriaEntity.getName());
-////                    chartDTO.setTotal(0.0);
-////                    categoriaEntity.getLancamentoEntity().forEach(lan->{
-////                        chartDTO.setTotal(lan.getAmount() + chartDTO.getTotal());
-////                    });
-////                    lists.add(chartDTO);
-////                });
-//        return categoriaLista;
-//    }
-//    public ChartDTO toDto(CategoriaEntity ce){
-//        ChartDTO chartDTO = new ChartDTO();
-//        chartDTO.setName(ce.getName());
-//        chartDTO.setType(ce.getLancamentos().get(0).getType());
-//        chartDTO.setAmount(ce.getLancamentos().get(0).getAmount());
-//        return chartDTO;
-//    }

@@ -1,16 +1,14 @@
 package com.trilha.back.financys.services;
 
 import com.trilha.back.financys.dtos.CategoriaDTO;
-import com.trilha.back.financys.dtos.ChartDTO;
+import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.CategoriaEntity;
+import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.CategoriaNotFoundException;
 import com.trilha.back.financys.repositories.CategoriaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,25 +61,8 @@ public class CategoriaService {
         }
     }
 
-//    public ResponseEntity<List<CategoriaEntity>> readAll(){
-//        List<CategoriaEntity> readAll = categoriaRepository.findAll();
-//        return ResponseEntity.ok(readAll);
-//    }
-//
-//    public Long idCategoryByName(String nameCategory ) {
-//        CategoriaEntity read = categoriaRepository.findByName(nameCategory);
-//        return read.getId();
-//    }
-
-
     public CategoriaEntity mapToCategoria(CategoriaDTO categoryDTO) {
-        CategoriaEntity categoriaEntity = modelMapper.map(categoryDTO, CategoriaEntity.class);
-        return categoriaEntity;
-    }
-
-    public CategoriaDTO mapToDTO(CategoriaEntity categoryEntity) {
-        CategoriaDTO categoriaDTO = modelMapper.map(categoryEntity, CategoriaDTO.class);
-        return categoriaDTO;
+        return modelMapper.map(categoryDTO, CategoriaEntity.class);
     }
 
 }

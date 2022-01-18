@@ -8,8 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 public class ChartDTO {
 
-    //private String NameCategoria;
-
     private String type;
 
     private String amount;

@@ -1,11 +1,9 @@
 package com.trilha.back.financys.controllers;
 
-import com.trilha.back.financys.dtos.ChartDTO;
 import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.LancamentosNotFoundException;
 import com.trilha.back.financys.exceptions.NullPointerException;
-import com.trilha.back.financys.exceptions.ObjectNotFoundException;
 import com.trilha.back.financys.services.CategoriaService;
 import com.trilha.back.financys.services.LancamentosService;
 import io.swagger.annotations.Api;
@@ -63,12 +61,6 @@ public class LancamentosController {
         lancamentosService.deleteLancamentos(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-//    @GetMapping("/chartDTO")
-//    public ChartDTO grafico(){
-//        return ResponseEntity.status(HttpStatus.OK).body(lancamentosService.grafico());
-//    }
-
 
     @GetMapping(value = "/calcula/{x}/{y}")
     @ApiOperation(value = "Calcula a Média de X e Y")
