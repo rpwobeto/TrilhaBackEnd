@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.mockito.Mockito.when;
 
+
 @RunWith(SpringRunner.class)
 public class TrilhaBackTestesService {
 
