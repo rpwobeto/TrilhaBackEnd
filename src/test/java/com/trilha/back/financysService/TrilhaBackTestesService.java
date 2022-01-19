@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.mockito.Mockito.when;
 
-
 @RunWith(SpringRunner.class)
 public class TrilhaBackTestesService {
 
@@ -37,7 +36,7 @@ public class TrilhaBackTestesService {
         when(lancamentRepository.findAll()).thenReturn(lancamentos);
 
         Assertions.assertFalse(lancamentosService.getAll().isEmpty());
-        Assertions.assertEquals(1, lancamentosService.getLancamentosDependentes("10-10-2010", 600.00, true).size());
+        Assertions.assertEquals(1, lancamentosService.getLancamentosDependentes("10-10-2010", 600.00,true).size());
     }
 }
 
