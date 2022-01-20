@@ -1,9 +1,7 @@
 package com.trilha.back.financys.services;
 
 import com.trilha.back.financys.dtos.CategoriaDTO;
-import com.trilha.back.financys.dtos.LancamentosDTO;
 import com.trilha.back.financys.entities.CategoriaEntity;
-import com.trilha.back.financys.entities.LancamentosEntity;
 import com.trilha.back.financys.exceptions.CategoriaNotFoundException;
 import com.trilha.back.financys.repositories.CategoriaRepository;
 import org.modelmapper.ModelMapper;

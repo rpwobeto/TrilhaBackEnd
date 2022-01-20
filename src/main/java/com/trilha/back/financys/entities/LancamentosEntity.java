@@ -17,7 +17,6 @@ import java.util.Objects;
 @ToString
 
 public class LancamentosEntity implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
