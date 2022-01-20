@@ -663,4 +663,30 @@ traces de erros e explique em uma só frase qual o erro (min 20 linhas).DICA: ht
 conteúdos dos 3 e 6 desta página. 
 OBS: Irão utilizar esse framework para simular uma aquisição de dados da base)Versione seu código na branch “desafio12”
 na branch “main” para atualizar com suas modificações.
-R:
+
+## Desafio 13
+
+Prólogo: Seu objetivo durante o desafio 13 é praticar o processo de integração, e entender a
+importância de seguirmos à risca os contratos, entender a relevância de mudar uma
+letra ou alterar um campo. Garantindo então o que foi combinado entre as aplicações,
+o processo de integração será rápido e sem dores de cabeça.
+
+Crie uma nova branch em seu repositório com o nome “desafio13” a partir da “main”, responda 
+as perguntas no documento README.md.
+
+a) Acesse o repositório https://github.com/lssales182/controle-financeiro, faça um clone do projeto e em seguida 
+realize os seguintes passos:
+
+I. Ajuste as variáveis de ambiente do projeto, para isso acesse o arquivo environment.ts e ajuste as variáveis de rotas 
+de acordo com sua API;
+
+II. Execute o projeto seguindo o README;
+
+III. Teste a integração acessando o link http://localhost:4200/;
+
+IV. Caso não tenha dado certo, acesse o console através do inspecionar do navegador e verifique se acusa algum erro;
+
+b) Tire evidências das telas e testes mostrando a integração dos dois códigos e adicione no README.md
+Versione seu código na brach “desafio13” na branch “main” para atualizar com suas modificações.
+
+

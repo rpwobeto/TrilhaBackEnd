@@ -17,9 +17,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/financys/lancamentos")
+@RequestMapping(value = "/lancamentos")
 @CrossOrigin(origins ="*")
-@Api(value = "Desafios Trilha BackEnd Java - ENTRY")
+@Api(value = "Desafios Trilha BackEnd Java - LANÇAMENTOS")
 
 public class LancamentosController {
 
@@ -36,26 +36,26 @@ public class LancamentosController {
         return ResponseEntity.ok(lancamentosService.save(lancamentosDTO));
     }
 
-    @GetMapping (value= "/get-all")
+    @GetMapping
     @ApiOperation(value = "Retorna todos os lancamentos criados")
     public ResponseEntity<List<LancamentosEntity>> findAll() {
         List<LancamentosEntity> list= lancamentosService.getAll();
         return ResponseEntity.ok().body(list);
     }
 
-    @GetMapping(value = "/get-id/{id}")
+    @GetMapping(value = "/{id}")
     @ApiOperation(value = "Retorna o lancamento pelo ID")
     public LancamentosEntity getById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(lancamentosService.getById(id)).getBody();
     }
 
-    @PutMapping(path = "/update/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody LancamentosDTO lancamentosDTO) {
         lancamentosService.updateById(id,lancamentosDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/delete-by/{id}")
+    @DeleteMapping(path = "/{id}")
     @ApiOperation(value = "Deleta o lancamento criado através do ID")
     public ResponseEntity<?> deleteLancamento(@PathVariable Long id) {
         lancamentosService.deleteLancamentos(id);
