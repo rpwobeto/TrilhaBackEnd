@@ -49,7 +49,7 @@ public class TrilhaBackTestes {
         when(lancamentosService.getLancamentosDependentes(lancamentos.getDate(),
                 lancamentos.getAmount(), lancamentos.getPaid())).thenReturn(Collections.singletonList(lancamentos));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/financys/lancamentos/filter")
+        mockMvc.perform(MockMvcRequestBuilders.get("/lancamentos")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
